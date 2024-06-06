@@ -3,15 +3,12 @@ import PageHeader from '@/components/PageHeader';
 
 const page = () => {
   return (
-    <section>
+    <section className='h-full flex flex-col'>
       <PageHeader
         title='My Progress'
         description='You can track your monthly progress, based from your journals.'
       />
-
-      <div className='h-full'>
-        <Chart />
-      </div>
+      <Chart />
     </section>
   );
 };

@@ -3,6 +3,7 @@ import { currentUser } from '@clerk/nextjs/server';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import MobileNav from './MobileNav';
 import { Button } from './ui/button';
 
 export const Header = async () => {
@@ -22,9 +23,12 @@ export const Header = async () => {
           <h1 className='font-extrabold text-lg'>MindHaven</h1>
         </Link>
       </div>
-
+      <MobileNav
+        userFirstName={user?.firstName}
+        userLastName={user?.lastName}
+      />
       <SignedIn>
-        <div className='flex gap-2 items-center'>
+        <div className='gap-2 items-center hidden md:flex'>
           <UserButton />
           <p className='text-sm font-semibold'>
             {user?.firstName} {user?.lastName}
