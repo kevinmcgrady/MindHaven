@@ -1,8 +1,9 @@
-import { currentUser } from '@clerk/nextjs/server';
 import Image from 'next/image';
 
+import { getUserDetails } from '@/queries/auth';
+
 const page = async () => {
-  const user = await currentUser();
+  const user = await getUserDetails();
 
   return (
     <section>

@@ -1,6 +1,10 @@
+import { getUserDetails } from '@/queries/auth';
+
 import { Button } from '../ui/button';
 
-const DashboardGrid = () => {
+const DashboardGrid = async () => {
+  const user = await getUserDetails();
+
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4'>
       <div className='grid gap-4'>
@@ -26,7 +30,7 @@ const DashboardGrid = () => {
         </div>
         <div className='bg-[#CBC0C6] h-auto max-w-full rounded-lg p-8 shadow-lg'>
           <p className='mb-4'>
-            You are currently on the <strong>Free Plan</strong>
+            You are currently on the <strong>{user?.plan} Plan</strong>
           </p>
           <Button>Manage Plan</Button>
         </div>

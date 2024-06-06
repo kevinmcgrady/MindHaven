@@ -1,10 +1,9 @@
-import { currentUser } from '@clerk/nextjs/server';
-
 import DashboardGrid from '@/components/dashboard/DashboardGrid';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
+import { getUserDetails } from '@/queries/auth';
 
 const DashboardPage = async () => {
-  const user = await currentUser();
+  const user = await getUserDetails();
 
   return (
     <main>

@@ -1,13 +1,14 @@
 import { SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
-import { currentUser } from '@clerk/nextjs/server';
 import Image from 'next/image';
 import Link from 'next/link';
+
+import { getUserDetails } from '@/queries/auth';
 
 import MobileNav from './MobileNav';
 import { Button } from './ui/button';
 
 export const Header = async () => {
-  const user = await currentUser();
+  const user = await getUserDetails();
 
   return (
     <div className='flex gap-8 items-center mb-4 justify-between'>

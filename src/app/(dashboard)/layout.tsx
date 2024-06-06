@@ -4,14 +4,17 @@ import { Footer } from '@/components/Footer';
 import { Header } from '@/components/Header';
 import { LeftSidebar } from '@/components/LeftSidebar';
 import { RightSidebar } from '@/components/RightSidebar';
+import { syncUser } from '@/queries/auth';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  await syncUser();
+
   return (
-    <main className='py-4 h-screen flex flex-col'>
+    <main className='container py-4 h-screen flex flex-col'>
       <Header />
       <section className='flex flex-1'>
         <LeftSidebar />

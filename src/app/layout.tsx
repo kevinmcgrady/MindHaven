@@ -22,7 +22,7 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang='en' className='container'>
+      <html lang='en'>
         <body className={maprope.className}>{children}</body>
       </html>
     </ClerkProvider>
