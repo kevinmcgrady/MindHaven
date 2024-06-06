@@ -1,7 +1,17 @@
+import { Chart } from '@/components/Chart';
+import PageHeader from '@/components/PageHeader';
+
 const page = () => {
   return (
     <section>
-      <h2 className='font-semibold text-xl'>My Progress</h2>
+      <PageHeader
+        title='My Progress'
+        description='You can track your monthly progress, based from your journals.'
+      />
+
+      <div className='h-full'>
+        <Chart />
+      </div>
     </section>
   );
 };

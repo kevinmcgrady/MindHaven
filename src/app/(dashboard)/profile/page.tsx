@@ -1,7 +1,9 @@
+import PageHeader from '@/components/PageHeader';
+
 const page = () => {
   return (
     <section>
-      <h2 className='font-semibold text-xl'>My Profile</h2>
+      <PageHeader title='My Profile' description='Manage your profile' />
     </section>
   );
 };

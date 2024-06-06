@@ -1,3 +1,11 @@
 export const Footer = () => {
-  return <footer className='p-8 bg-[#292829] mt-8 rounded-lg'></footer>;
+  return (
+    <footer className='bg-[#292829] rounded-xl mt-8 text-white'>
+      <div className='w-full mx-auto p-4'>
+        <span className='block text-sm sm:text-center'>
+          © {new Date().getFullYear()} MindHaven . All Rights Reserved.
+        </span>
+      </div>
+    </footer>
+  );
 };

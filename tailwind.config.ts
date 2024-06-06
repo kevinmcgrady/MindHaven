@@ -20,6 +20,7 @@ const config = {
     extend: {
       backgroundImage: {
         hero: "url('/images/logo.png')",
+        overlay: "url('/images/overlay.svg')",
       },
       colors: {
         border: 'hsl(var(--border))',
