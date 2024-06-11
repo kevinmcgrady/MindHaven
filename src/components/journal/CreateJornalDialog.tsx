@@ -12,19 +12,25 @@ import { moods } from '@/constants/moods';
 import { createJornal } from '@/queries/journal';
 import { generateAudioFile } from '@/queries/openai';
 
-import { Button } from './ui/button';
-import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
-import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
-import { Input } from './ui/input';
-import { Label } from './ui/label';
+import { Button } from '../ui/button';
+import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '../ui/form';
+import { Input } from '../ui/input';
+import { Label } from '../ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
-import { Textarea } from './ui/textarea';
+} from '../ui/select';
+import { Textarea } from '../ui/textarea';
 
 const CreateJornalDialog = () => {
   const [selectedVoice, setSelectedVoice] = useState<string | null>(null);

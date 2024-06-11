@@ -1,7 +1,6 @@
 'use client';
 
-import { Journal } from '@prisma/client';
-import { Pause, Play, RotateCcw, RotateCw } from 'lucide-react';
+import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
 import { formatTime } from '@/lib/formatTime';

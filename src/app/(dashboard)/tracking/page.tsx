@@ -2,6 +2,7 @@ import { format } from 'date-fns';
 import Link from 'next/link';
 
 import { Chart } from '@/components/Chart';
+import CardSection from '@/components/layout/CardSection';
 import PageHeader from '@/components/PageHeader';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
@@ -16,24 +17,24 @@ const page = async () => {
     currentYear,
   );
 
-  const noJournals = !usersJournals || usersJournals.length === 0;
+  const hasJournals = usersJournals && usersJournals.length > 0;
 
   return (
     <div className='h-full flex flex-col'>
-      <section className='bg-white p-4 rounded-xl mb-4'>
+      <CardSection noSpacing>
         <PageHeader
           title='My Progress'
           description='You can track your monthly progress, based from your journals.'
         />
-      </section>
+      </CardSection>
 
-      <section
-        className={cn('bg-white p-4 rounded-xl flex flex-col', {
-          'h-full': !noJournals,
-          'h-fit': noJournals,
+      <CardSection
+        className={cn('flex flex-col', {
+          'h-1/2': hasJournals,
+          'h-fit': !hasJournals,
         })}
       >
-        {noJournals ? (
+        {!hasJournals ? (
           <>
             <p className='text-muted-foreground text-center'>
               You don&apos;t have any journals yet!
@@ -45,7 +46,9 @@ const page = async () => {
         ) : (
           <Chart journals={usersJournals} />
         )}
-      </section>
+      </CardSection>
+
+      {hasJournals && <CardSection>x</CardSection>}
     </div>
   );
 };

@@ -1,26 +1,26 @@
-import CreateJornalDialog from '@/components/CreateJornalDialog';
-import ListenButton from '@/components/ListenButton';
+import CreateJornalDialog from '@/components/journal/CreateJornalDialog';
+import JournalCard from '@/components/journal/JournalCard';
+import CardSection from '@/components/layout/CardSection';
 import PageHeader from '@/components/PageHeader';
 import PreviousJournals from '@/components/PreviousJournals';
-import { Badge } from '@/components/ui/badge';
-import { formatDate } from '@/lib/formatDate';
 import { getAllJournals, getJournalByDate } from '@/queries/journal';
 
 const page = async () => {
   const usersTodayJornal = await getJournalByDate(new Date());
   const usersJournals = await getAllJournals();
+  const hasUsersJournals = usersJournals && usersJournals.length > 0;
 
   return (
     <>
-      <section className='bg-white p-4 rounded-xl'>
+      <CardSection noSpacing>
         <PageHeader
           title='My Journal'
           description=' You can create a new journal entry and listen to all your previous
         entries.'
         />
-      </section>
+      </CardSection>
 
-      <section className='bg-white rounded-xl p-4 mt-4'>
+      <CardSection>
         {!usersTodayJornal && (
           <>
             <h2 className='font-light text-muted-foreground mb-2'>
@@ -31,35 +31,18 @@ const page = async () => {
         )}
 
         {usersTodayJornal && (
-          <>
-            <h2 className='font-light text-muted-foreground mb-2'>Today</h2>
-            <h3 className='font-semibold mb-2 text-lg'>
-              {usersTodayJornal.title}
-            </h3>
-            <p className='mb-4 text-muted-foreground'>
-              &quot;{usersTodayJornal.entry}&quot;
-            </p>
-
-            <div className='flex items-center justify-between'>
-              <p className='text-xs'>
-                {formatDate(usersTodayJornal.createdAt)}
-              </p>
-              <Badge variant='outline'>{usersTodayJornal.mood}</Badge>
-            </div>
-
-            <ListenButton journal={usersTodayJornal} />
-          </>
+          <JournalCard title='Today' journal={usersTodayJornal} />
         )}
-      </section>
+      </CardSection>
 
-      <section className='bg-white rounded-xl p-4 mt-4'>
+      <CardSection>
         <h2 className='font-light text-muted-foreground mb-2'>Previous</h2>
-        {!usersJournals || usersJournals.length === 0 ? (
+        {!hasUsersJournals ? (
           <p>You don&apos;t have any journals to display</p>
         ) : (
           <PreviousJournals journals={usersJournals} />
         )}
-      </section>
+      </CardSection>
     </>
   );
 };
