@@ -1,9 +1,15 @@
 import Image from 'next/image';
 
+import { WelcomeScreen } from '@/components/WelcomeScreen';
+import { formatDate } from '@/lib/formatDate';
 import { getUserDetails } from '@/queries/auth';
 
 const page = async () => {
   const user = await getUserDetails();
+
+  if (!user?.hasCompletedProfile) {
+    return <WelcomeScreen />;
+  }
 
   return (
     <section>
@@ -20,9 +26,9 @@ const page = async () => {
           {user?.firstName} {user?.lastName} 🥳
         </h2>
         <div className='flex items-center justify-center gap-2 mt-2'>
-          <p className='font-semibold text-sm'>Glasgow</p>
+          <p className='font-semibold text-sm'>{user.country}</p>
           <p className=' font-light text-sm'>
-            Joined <strong>21st July 2024</strong>
+            Joined <strong>{formatDate(user?.createdAt)}</strong>
           </p>
         </div>
       </div>
@@ -30,21 +36,12 @@ const page = async () => {
       <div className='px-4'>
         <div className='mb-8'>
           <h3 className='font-semibold text-lg mb-2'>Bio</h3>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Illum nam
-            atque consequatur! Maxime labore qui quia saepe amet sit commodi
-            dolores, soluta ipsa numquam quisquam, aut quae modi, quod velit.
-          </p>
+          <p>{user.bio}</p>
         </div>
 
         <div className='mb-8'>
           <h3 className='font-semibold text-lg mb-4'>My Mental Health Goal</h3>
-          <p className='font-semibold'>
-            &ldqu;Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Illum nam atque consequatur! Maxime labore qui quia saepe amet sit
-            commodi dolores, soluta ipsa numquam quisquam, aut quae modi, quod
-            velit.&rbquo;
-          </p>
+          <p className='font-semibold'>{user.mentalHealthGoal}</p>
         </div>
       </div>
     </section>

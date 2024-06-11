@@ -1,23 +1,44 @@
 'use client';
 
+import { Journal } from '@prisma/client';
 import { AgChartsReact } from 'ag-charts-react';
+import { format } from 'date-fns';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-
-import { chartData } from '@/constants/dummyChartData';
+import _ from 'underscore';
 
 import { Button } from './ui/button';
 
-export const Chart = () => {
+type ChartProps = {
+  journals: Journal[];
+};
+
+export const Chart = ({ journals }: ChartProps) => {
+  const currentMonth = format(new Date(), 'MMM');
+
+  const groupedJournals = _.groupBy(journals, 'mood');
+
+  const chartData = [
+    { mood: 'HAPPY', noOfDays: groupedJournals.HAPPY?.length || 0 },
+    { mood: 'SAD', noOfDays: groupedJournals.SAD?.length || 0 },
+    { mood: 'ANXIOUS', noOfDays: groupedJournals.ANXIOUS?.length || 0 },
+    { mood: 'EXITED', noOfDays: groupedJournals.EXITED?.length || 0 },
+    { mood: 'DEPRESSED', noOfDays: groupedJournals.DEPRESSED?.length || 0 },
+  ];
+
+  const handleNextMonth = () => {};
+
+  const handlePrevMonth = () => {};
+
   return (
     <div className='mb-8 flex flex-col flex-1'>
       <div className='flex justify-end gap-4 items-center'>
-        <p className='font-light'>2024</p>
+        <p className='font-light'>{currentMonth}</p>
         <div className='flex gap-2'>
           <Button size='icon'>
-            <ChevronLeft size={15} />
+            <ChevronLeft onClick={handlePrevMonth} size={15} />
           </Button>
           <Button size='icon'>
-            <ChevronRight size={15} />
+            <ChevronRight onClick={handleNextMonth} size={15} />
           </Button>
         </div>
       </div>
@@ -41,48 +62,9 @@ export const Chart = () => {
             series: [
               {
                 type: 'bar',
-                xKey: 'month',
-                yKey: 'happy',
-                yName: 'Happy',
-                stacked: true,
-                normalizedTo: 100,
-                fill: '#E7AA8B',
-              },
-              {
-                type: 'bar',
-                xKey: 'month',
-                yKey: 'sad',
-                yName: 'Sad',
-                stacked: true,
-                normalizedTo: 100,
-                fill: '#D7D4B0',
-              },
-              {
-                type: 'bar',
-                xKey: 'month',
-                yKey: 'depressed',
-                yName: 'Depressed',
-                stacked: true,
-                normalizedTo: 100,
-                fill: '#B9C1D3',
-              },
-              {
-                type: 'bar',
-                xKey: 'month',
-                yKey: 'anxious',
-                yName: 'Anxious',
-                stacked: true,
-                normalizedTo: 100,
-                fill: '#CBC0C5',
-              },
-              {
-                type: 'bar',
-                xKey: 'month',
-                yKey: 'exited',
-                yName: 'Exited',
-                stacked: true,
-                normalizedTo: 100,
-                fill: '#95BDB6',
+                xKey: 'mood',
+                yKey: 'noOfDays',
+                yName: 'Days',
               },
             ],
             axes: [
@@ -96,17 +78,10 @@ export const Chart = () => {
               {
                 type: 'number',
                 position: 'left',
-                nice: false,
-                gridLine: {
-                  enabled: false,
-                },
                 label: {
                   formatter(params) {
                     return `${params.value} days`;
                   },
-                },
-                crosshair: {
-                  enabled: false,
                 },
               },
             ],
