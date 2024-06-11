@@ -6,12 +6,12 @@ const DashboardPage = async () => {
   const user = await getUserDetails();
 
   return (
-    <main>
+    <section>
       <DashboardHeader userFirstName={user?.firstName} />
-      <div className='rounded-t-3xl p-8 border -mt-4 bg-white'>
+      <div className='rounded-b-xl p-8 mt-4 bg-white'>
         <DashboardGrid />
       </div>
-    </main>
+    </section>
   );
 };
 

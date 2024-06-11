@@ -8,10 +8,13 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
 import { getJournalByDate } from '@/queries/journal';
 
 import { AudioPlayer } from './AudioPlayer';
+import ListenButton from './ListenButton';
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Calendar } from './ui/calendar';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
@@ -26,7 +29,7 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
     Journal | null | undefined
   >(null);
 
-  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(true);
+  const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
 
   const journalDates: string[] = journals.map((journal) =>
     format(journal.createdAt, 'yyyy-MM-dd'),
@@ -109,13 +112,25 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
         </form>
       </Form>
 
-      {selectedJournal && (
-        <div className='mt-8'>
-          <AudioPlayer journal={selectedJournal} />
-          <h3 className=' font-semibold mt-8 mb-2'>Transcript</h3>
-          <p>&quot;{selectedJournal.entry}&quot;</p>
-        </div>
-      )}
+      <section>
+        {selectedJournal && (
+          <div className='mt-4'>
+            <h3 className='font-semibold mb-2 text-lg'>
+              {selectedJournal.title}
+            </h3>
+            <p className='mb-4 text-muted-foreground'>
+              &quot;{selectedJournal.entry}&quot;
+            </p>
+
+            <div className='flex items-center justify-between'>
+              <p className='text-xs'>{formatDate(selectedJournal.createdAt)}</p>
+              <Badge variant='outline'>{selectedJournal.mood}</Badge>
+            </div>
+
+            <ListenButton journal={selectedJournal} />
+          </div>
+        )}
+      </section>
     </>
   );
 };

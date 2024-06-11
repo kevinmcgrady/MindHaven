@@ -63,7 +63,7 @@ const CreateJornalDialog = () => {
         voice: values.voice,
       });
 
-      router.push('/jornal');
+      router.push('/journal');
     } catch (error) {
       console.log(error);
     } finally {

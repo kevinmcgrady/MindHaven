@@ -3,11 +3,9 @@ import { PlanUpgrade } from './PlanUpgrade';
 
 export const LeftSidebar = () => {
   return (
-    <aside className='w-[210px] mr-4  relative hidden md:flex'>
-      <div className='sticky top-0'>
-        <Nav />
-        <PlanUpgrade />
-      </div>
+    <aside className='w-[310px] relative hidden md:flex md:flex-col rounded-xl '>
+      <Nav />
+      <PlanUpgrade />
     </aside>
   );
 };

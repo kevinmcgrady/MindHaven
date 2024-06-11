@@ -1,3 +1,5 @@
+import { AudioPlayer } from './AudioPlayer';
+
 export const RightSidebar = () => {
-  return <div className='w-[210px] ml-4'>RightSidebar</div>;
+  return <div className='w-[310px] ml-4 bg-white rounded-xl'></div>;
 };

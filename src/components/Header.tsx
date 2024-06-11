@@ -11,7 +11,7 @@ export const Header = async () => {
   const user = await getUserDetails();
 
   return (
-    <div className='flex gap-8 items-center mb-4 justify-between'>
+    <div className='flex gap-8 items-center mb-4 justify-between bg-white p-4 rounded-xl'>
       <div className='flex gap-2 items-center'>
         <Image
           src='/images/blob.png'

@@ -5,6 +5,8 @@ import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import type React from 'react';
 
+import { cn } from '@/lib/utils';
+
 const maprope = Manrope({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
@@ -23,7 +25,9 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang='en'>
-        <body className={maprope.className}>{children}</body>
+        <body className={cn(maprope.className, 'bg-[#F8F9FC]')}>
+          {children}
+        </body>
       </html>
     </ClerkProvider>
   );

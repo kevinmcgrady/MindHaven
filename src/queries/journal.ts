@@ -1,7 +1,7 @@
 'use server';
 
 import { currentUser } from '@clerk/nextjs/server';
-import { add, format, sub } from 'date-fns';
+import { format } from 'date-fns';
 
 import { db } from '@/lib/db';
 
@@ -31,26 +31,6 @@ export const createJornal = async (jornal: {
       createdAtYear: year,
     },
   });
-};
-
-export const getUsersTodayJornal = async () => {
-  const user = await currentUser();
-  const tomorrow = add(new Date(), { days: 1 });
-  const yesterday = sub(new Date(), { days: 1 });
-
-  if (!user) return;
-
-  const jornal = await db.journal.findFirst({
-    where: {
-      userId: user.id,
-      createdAt: {
-        lte: tomorrow,
-        gte: yesterday,
-      },
-    },
-  });
-
-  return jornal;
 };
 
 export const getJournalByDate = async (date: Date) => {

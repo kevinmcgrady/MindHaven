@@ -6,19 +6,20 @@ import { useEffect, useRef, useState } from 'react';
 
 import { formatTime } from '@/lib/formatTime';
 
+import { Button } from './ui/button';
 import { Progress } from './ui/progress';
 
 type AudioPlayerProps = {
-  journal: Journal;
+  audioUrl: string;
 };
 
-export const AudioPlayer = ({ journal }: AudioPlayerProps) => {
+export const AudioPlayer = ({ audioUrl }: AudioPlayerProps) => {
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState<boolean>(false);
   const [duration, setDuration] = useState<number>(0);
   const [currentTime, setCurrentTime] = useState<number>(0);
 
-  const togglePlayPause = () => {
+  const handleTogglePlayPause = () => {
     if (audioRef.current?.paused) {
       audioRef.current?.play();
       setIsPlaying(true);
@@ -26,27 +27,10 @@ export const AudioPlayer = ({ journal }: AudioPlayerProps) => {
       audioRef.current?.pause();
       setIsPlaying(false);
     }
-
-    console.log(audioRef.current?.duration);
   };
 
-  const forward = () => {
-    if (
-      audioRef.current &&
-      audioRef.current.currentTime &&
-      audioRef.current.duration &&
-      audioRef.current.currentTime + 5 < audioRef.current.duration
-    ) {
-      audioRef.current.currentTime += 5;
-    }
-  };
-
-  const rewind = () => {
-    if (audioRef.current && audioRef.current.currentTime - 5 > 0) {
-      audioRef.current.currentTime -= 5;
-    } else if (audioRef.current) {
-      audioRef.current.currentTime = 0;
-    }
+  const handleAudioEnded = () => {
+    setIsPlaying(false);
   };
 
   useEffect(() => {
@@ -67,59 +51,41 @@ export const AudioPlayer = ({ journal }: AudioPlayerProps) => {
     };
   }, []);
 
-  const handleAudioEnded = () => {
-    setIsPlaying(false);
-  };
-
   return (
-    <>
+    <div className='my-4'>
       <audio
         ref={audioRef}
-        src={journal.audioUrl}
+        src={audioUrl}
         className='hidden'
         onEnded={handleAudioEnded}
       />
 
-      <div className='flex border shadow rounded-xl overflow-hidden mx-auto'>
-        <div className='flex flex-col w-full'>
-          <div className='flex flex-col sm:flex-row items-center p-5'>
-            <div className='flex items-center'>
-              <div className='flex space-x-3 p-2 items-center'>
-                <RotateCcw
-                  className='w-5 h-5 text-[#64748B] cursor-pointer'
-                  onClick={rewind}
-                />
-                {isPlaying && (
-                  <Pause
-                    onClick={togglePlayPause}
-                    className='w-5 h-5 text-[#F77334] cursor-pointer'
-                  />
-                )}
-                {!isPlaying && (
-                  <Play
-                    onClick={togglePlayPause}
-                    className='w-5 h-5 text-[#F77334] cursor-pointer'
-                  />
-                )}
-                <RotateCw
-                  className='w-5 h-5 text-[#64748B] cursor-pointer'
-                  onClick={forward}
-                />
-              </div>
-            </div>
-            <Progress
-              value={(currentTime / duration) * 100}
-              className='w-full'
-              max={duration}
-            />
-            <div className='flex justify-end w-full sm:w-auto pt-1 sm:pt-0'>
-              <span className='text-sm uppercase font-semibold pl-2'>
-                {formatTime(currentTime)}/{formatTime(duration)}
-              </span>
-            </div>
-          </div>
+      <Progress
+        value={(currentTime / duration) * 100}
+        className='w-full mb-4'
+        max={duration}
+      />
+
+      <div className='flex items-center justify-between'>
+        <div className='flex'>
+          {isPlaying && (
+            <Button onClick={handleTogglePlayPause} size='icon'>
+              <Pause size={15} />
+            </Button>
+          )}
+          {!isPlaying && (
+            <Button onClick={handleTogglePlayPause} size='icon'>
+              <Play size={15} />
+            </Button>
+          )}
+        </div>
+
+        <div>
+          <span className='text-xs text-muted-foreground font-semibold'>
+            {formatTime(currentTime)}/{formatTime(duration)}
+          </span>
         </div>
       </div>
-    </>
+    </div>
   );
 };

@@ -1,57 +1,66 @@
-import { AudioPlayer } from '@/components/AudioPlayer';
 import CreateJornalDialog from '@/components/CreateJornalDialog';
+import ListenButton from '@/components/ListenButton';
 import PageHeader from '@/components/PageHeader';
 import PreviousJournals from '@/components/PreviousJournals';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Badge } from '@/components/ui/badge';
 import { formatDate } from '@/lib/formatDate';
-import { getAllJournals, getUsersTodayJornal } from '@/queries/journal';
+import { getAllJournals, getJournalByDate } from '@/queries/journal';
 
 const page = async () => {
-  const usersTodayJornal = await getUsersTodayJornal();
+  const usersTodayJornal = await getJournalByDate(new Date());
   const usersJournals = await getAllJournals();
 
   return (
-    <section>
-      <PageHeader
-        title='My Journal'
-        description=' You can create a new journal entry and listen to all your previous
+    <>
+      <section className='bg-white p-4 rounded-xl'>
+        <PageHeader
+          title='My Journal'
+          description=' You can create a new journal entry and listen to all your previous
         entries.'
-      />
+        />
+      </section>
 
-      <Tabs defaultValue='today' className='w-full'>
-        <TabsList className='w-full justify-start'>
-          <TabsTrigger value='today'>Todays Entry</TabsTrigger>
-          <TabsTrigger value='previous'>Previous Entries</TabsTrigger>
-        </TabsList>
-        <TabsContent className='pt-4' value='today'>
-          {!usersTodayJornal && <CreateJornalDialog />}
+      <section className='bg-white rounded-xl p-4 mt-4'>
+        {!usersTodayJornal && (
+          <>
+            <h2 className='font-light text-muted-foreground mb-2'>
+              You don&apos;t have an entry for today!
+            </h2>
+            <CreateJornalDialog />
+          </>
+        )}
 
-          {usersTodayJornal && (
-            <>
-              <h2 className='mb-8 font-semibold text-xl'>
-                {usersTodayJornal.title} -
-                <span className='font-light'>
-                  {formatDate(usersTodayJornal.createdAt)}
-                </span>
-              </h2>
+        {usersTodayJornal && (
+          <>
+            <h2 className='font-light text-muted-foreground mb-2'>Today</h2>
+            <h3 className='font-semibold mb-2 text-lg'>
+              {usersTodayJornal.title}
+            </h3>
+            <p className='mb-4 text-muted-foreground'>
+              &quot;{usersTodayJornal.entry}&quot;
+            </p>
 
-              <AudioPlayer journal={usersTodayJornal} />
-              <h3 className='mt-8 font-semibold'>Transcript</h3>
-              <p className='mt-2 font-light leading-7'>
-                {usersTodayJornal.entry}
+            <div className='flex items-center justify-between'>
+              <p className='text-xs'>
+                {formatDate(usersTodayJornal.createdAt)}
               </p>
-            </>
-          )}
-        </TabsContent>
-        <TabsContent className='pt-4' value='previous'>
-          {!usersJournals || usersJournals.length === 0 ? (
-            <p>You don&apos;t have any journals to display</p>
-          ) : (
-            <PreviousJournals journals={usersJournals} />
-          )}
-        </TabsContent>
-      </Tabs>
-    </section>
+              <Badge variant='outline'>{usersTodayJornal.mood}</Badge>
+            </div>
+
+            <ListenButton journal={usersTodayJornal} />
+          </>
+        )}
+      </section>
+
+      <section className='bg-white rounded-xl p-4 mt-4'>
+        <h2 className='font-light text-muted-foreground mb-2'>Previous</h2>
+        {!usersJournals || usersJournals.length === 0 ? (
+          <p>You don&apos;t have any journals to display</p>
+        ) : (
+          <PreviousJournals journals={usersJournals} />
+        )}
+      </section>
+    </>
   );
 };
 

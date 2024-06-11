@@ -11,7 +11,7 @@ export const Nav = () => {
   const pathname = usePathname();
 
   return (
-    <nav className='flex flex-col space-y-4 mt-8'>
+    <nav className='flex flex-col space-y-4 bg-white p-4 rounded-xl'>
       {menuItems.map((item) => {
         const isActive = item.path === pathname;
 
