@@ -31,7 +31,9 @@ const page = async () => {
             {user?.firstName} {user?.lastName}
           </h2>
           <div className='flex items-center justify-center gap-2 mt-2'>
-            <p className='text-sm text-[#F77334]'>{user.country}</p>
+            <p className='text-sm text-[#F77334] font-semibold'>
+              {user.country}
+            </p>
             <p className='text-sm text-muted-foreground'>
               Joined {formatDate(user?.createdAt)}
             </p>

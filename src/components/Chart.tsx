@@ -14,6 +14,7 @@ type ChartProps = {
 
 export const Chart = ({ journals }: ChartProps) => {
   const currentMonth = format(new Date(), 'MMM');
+  const currentYear = format(new Date(), 'yyyy');
 
   const groupedJournals = _.groupBy(journals, 'mood');
 
@@ -32,7 +33,9 @@ export const Chart = ({ journals }: ChartProps) => {
   return (
     <div className='mb-8 flex flex-col flex-1'>
       <div className='flex justify-end gap-4 items-center'>
-        <p className='font-light'>{currentMonth}</p>
+        <p className='font-light'>
+          {currentMonth} {currentYear}
+        </p>
         <div className='flex gap-2'>
           <Button size='icon'>
             <ChevronLeft onClick={handlePrevMonth} size={15} />
@@ -45,44 +48,15 @@ export const Chart = ({ journals }: ChartProps) => {
       <div className='relative h-full mt-4'>
         <AgChartsReact
           options={{
-            data: chartData,
-            theme: {
-              overrides: {
-                bar: {
-                  series: {
-                    stroke: 'transparent',
-                    strokeWidth: 2,
-                    cornerRadius: 6,
-                    fillOpacity: 0.8,
-                  },
-                },
-              },
-            },
-
             series: [
               {
-                type: 'bar',
-                xKey: 'mood',
-                yKey: 'noOfDays',
-                yName: 'Days',
-              },
-            ],
-            axes: [
-              {
-                type: 'category',
-                position: 'bottom',
-                paddingInner: 0,
-                groupPaddingInner: 0,
-                paddingOuter: 0,
-              },
-              {
-                type: 'number',
-                position: 'left',
-                label: {
-                  formatter(params) {
-                    return `${params.value} days`;
-                  },
-                },
+                fills: ['#B7C0D4', '#BAAE97', '#E6A98A', '#CBBFC6', '#95BDB6'],
+                data: chartData,
+                type: 'pie',
+                calloutLabelKey: 'mood',
+                sectorLabelKey: 'mood',
+                angleKey: 'noOfDays',
+                radiusKey: 'noOfDays',
               },
             ],
           }}

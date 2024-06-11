@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Journal } from '@prisma/client';
 import { format } from 'date-fns';
-import { CalendarIcon } from 'lucide-react';
+import { CalendarIcon, Loader2 } from 'lucide-react';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -12,7 +12,6 @@ import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
 import { getJournalByDate } from '@/queries/journal';
 
-import { AudioPlayer } from './AudioPlayer';
 import ListenButton from './ListenButton';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
@@ -24,12 +23,12 @@ type PreviousJournalsProps = {
   journals: Journal[];
 };
 
-const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
-  const [selectedJournal, setSelectedJournal] = useState<
-    Journal | null | undefined
-  >(null);
+type SelectedJournal = Journal | null | undefined;
 
+const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
+  const [selectedJournal, setSelectedJournal] = useState<SelectedJournal>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const journalDates: string[] = journals.map((journal) =>
     format(journal.createdAt, 'yyyy-MM-dd'),
@@ -48,12 +47,14 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
   const handleSubmit = async (entryDate: Date | null) => {
     try {
       if (!entryDate) return;
-
+      setSelectedJournal(null);
+      setIsLoading(true);
       const journal = await getJournalByDate(entryDate);
-
       setSelectedJournal(journal);
     } catch (error) {
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -113,6 +114,12 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
       </Form>
 
       <section>
+        {isLoading && (
+          <div className='mt-4 flex items-center flex-col'>
+            <Loader2 size={30} color='#F77334' className='animate-spin' />
+          </div>
+        )}
+
         {selectedJournal && (
           <div className='mt-4'>
             <h3 className='font-semibold mb-2 text-lg'>
