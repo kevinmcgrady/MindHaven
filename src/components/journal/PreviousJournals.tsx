@@ -12,12 +12,19 @@ import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
 import { getJournalByDate } from '@/queries/journal';
 
-import ListenButton from './ListenButton';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Calendar } from './ui/calendar';
-import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import ListenButton from '../ListenButton';
+import { Badge } from '../ui/badge';
+import { Button } from '../ui/button';
+import { Calendar } from '../ui/calendar';
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from '../ui/form';
+import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import JournalCard from './JournalCard';
 
 type PreviousJournalsProps = {
   journals: Journal[];
@@ -113,30 +120,14 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
         </form>
       </Form>
 
-      <section>
+      <section className='mt-4'>
         {isLoading && (
           <div className='mt-4 flex items-center flex-col'>
             <Loader2 size={30} color='#F77334' className='animate-spin' />
           </div>
         )}
 
-        {selectedJournal && (
-          <div className='mt-4'>
-            <h3 className='font-semibold mb-2 text-lg'>
-              {selectedJournal.title}
-            </h3>
-            <p className='mb-4 text-muted-foreground'>
-              &quot;{selectedJournal.entry}&quot;
-            </p>
-
-            <div className='flex items-center justify-between'>
-              <p className='text-xs'>{formatDate(selectedJournal.createdAt)}</p>
-              <Badge variant='outline'>{selectedJournal.mood}</Badge>
-            </div>
-
-            <ListenButton journal={selectedJournal} />
-          </div>
-        )}
+        {selectedJournal && <JournalCard journal={selectedJournal} />}
       </section>
     </>
   );

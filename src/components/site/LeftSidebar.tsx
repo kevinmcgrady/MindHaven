@@ -1,5 +1,5 @@
+import { PlanUpgrade } from '../PlanUpgrade';
 import { Nav } from './Nav';
-import { PlanUpgrade } from './PlanUpgrade';
 
 export const LeftSidebar = () => {
   return (

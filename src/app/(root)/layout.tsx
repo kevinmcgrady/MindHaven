@@ -1,7 +1,7 @@
 import type React from 'react';
 
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
+import { Footer } from '@/components/site/Footer';
+import { Header } from '@/components/site/Header';
 
 export default function RootLayout({
   children,

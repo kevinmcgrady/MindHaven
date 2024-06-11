@@ -1,9 +1,9 @@
 import type React from 'react';
 
-import { Footer } from '@/components/Footer';
-import { Header } from '@/components/Header';
-import { LeftSidebar } from '@/components/LeftSidebar';
-import { RightSidebar } from '@/components/RightSidebar';
+import { Footer } from '@/components/site/Footer';
+import { Header } from '@/components/site/Header';
+import { LeftSidebar } from '@/components/site/LeftSidebar';
+import { RightSidebar } from '@/components/site/RightSidebar';
 import { syncUser } from '@/queries/auth';
 
 export default async function RootLayout({

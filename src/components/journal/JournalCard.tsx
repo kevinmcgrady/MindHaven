@@ -6,14 +6,17 @@ import ListenButton from '../ListenButton';
 import { Badge } from '../ui/badge';
 
 type JournalCardProps = {
-  title: string;
+  title?: string;
   journal: Journal;
 };
 
 const JournalCard = ({ title, journal }: JournalCardProps) => {
   return (
     <div>
-      <h2 className='font-light text-muted-foreground mb-2'>{title}</h2>
+      {title && (
+        <h2 className='font-light text-muted-foreground mb-2'>{title}</h2>
+      )}
+
       <h3 className='font-semibold mb-2 text-lg'>{journal.title}</h3>
       <p className='mb-4 text-muted-foreground'>&quot;{journal.entry}&quot;</p>
 

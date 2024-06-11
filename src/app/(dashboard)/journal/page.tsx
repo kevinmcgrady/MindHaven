@@ -1,8 +1,8 @@
 import CreateJornalDialog from '@/components/journal/CreateJornalDialog';
 import JournalCard from '@/components/journal/JournalCard';
+import PreviousJournals from '@/components/journal/PreviousJournals';
 import CardSection from '@/components/layout/CardSection';
-import PageHeader from '@/components/PageHeader';
-import PreviousJournals from '@/components/PreviousJournals';
+import PageHeader from '@/components/site/PageHeader';
 import { getAllJournals, getJournalByDate } from '@/queries/journal';
 
 const page = async () => {

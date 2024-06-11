@@ -3,8 +3,8 @@ import { Menu } from 'lucide-react';
 
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
+import { PlanUpgrade } from '../PlanUpgrade';
 import { Nav } from './Nav';
-import { PlanUpgrade } from './PlanUpgrade';
 
 type MobileNavProps = {
   userFirstName: string | undefined | null;

@@ -1,11 +1,13 @@
 import { ChevronRight } from 'lucide-react';
 
+import CardSection from './layout/CardSection';
+
 export const PlanUpgrade = () => {
   return (
-    <div className='border rounded-lg p-8 mt-8 bg-white'>
+    <CardSection>
       <p className='font-semibold flex items-center justify-between'>
         Let&apos;s upgrade your plan! <ChevronRight size={20} />
       </p>
-    </div>
+    </CardSection>
   );
 };

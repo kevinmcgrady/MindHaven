@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 import { Chart } from '@/components/Chart';
 import CardSection from '@/components/layout/CardSection';
-import PageHeader from '@/components/PageHeader';
+import PageHeader from '@/components/site/PageHeader';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { getJournalsByMonthAndYear } from '@/queries/journal';
