@@ -9,6 +9,7 @@ import { z } from 'zod';
 
 import { aiVoices } from '@/constants/aiVoices';
 import { moods } from '@/constants/moods';
+import { urls } from '@/constants/urls';
 import { createJornal } from '@/queries/journal';
 import { generateAudioFile } from '@/queries/openai';
 
@@ -69,7 +70,7 @@ const CreateJornalDialog = () => {
         voice: values.voice,
       });
 
-      router.push('/journal');
+      router.push(urls.dashboard.journal);
     } catch (error) {
       console.log(error);
     } finally {

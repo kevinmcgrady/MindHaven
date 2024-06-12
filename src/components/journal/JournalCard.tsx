@@ -1,6 +1,7 @@
 import { Journal } from '@prisma/client';
 
 import { formatDate } from '@/lib/formatDate';
+import { cn } from '@/lib/utils';
 
 import ListenButton from '../ListenButton';
 import { Badge } from '../ui/badge';
@@ -8,9 +9,10 @@ import { Badge } from '../ui/badge';
 type JournalCardProps = {
   title?: string;
   journal: Journal;
+  dense?: boolean;
 };
 
-const JournalCard = ({ title, journal }: JournalCardProps) => {
+const JournalCard = ({ title, journal, dense = false }: JournalCardProps) => {
   return (
     <div>
       {title && (
@@ -18,13 +20,15 @@ const JournalCard = ({ title, journal }: JournalCardProps) => {
       )}
 
       <h3 className='font-semibold mb-2 text-lg'>{journal.title}</h3>
-      <p className='mb-4 text-muted-foreground'>&quot;{journal.entry}&quot;</p>
-
-      <div className='flex items-center justify-between'>
+      {!dense && (
+        <p className='mb-4 text-muted-foreground'>
+          &quot;{journal.entry}&quot;
+        </p>
+      )}
+      <div className={cn('flex items-center justify-between')}>
         <p className='text-xs'>{formatDate(journal.createdAt)}</p>
         <Badge variant='outline'>{journal.mood}</Badge>
       </div>
-
       <ListenButton journal={journal} />
     </div>
   );

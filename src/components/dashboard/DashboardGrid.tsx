@@ -8,6 +8,10 @@ const DashboardGrid = async () => {
   const user = await getUserDetails();
   const journalCount = await getAllJournalCount();
   const lastJournalDate = await getLastJournalDate();
+  const journalMessage =
+    journalCount && journalCount?._count > 0
+      ? `Your last journal was ${formatDate(lastJournalDate!)}`
+      : 'You have not created a journal yet!';
 
   return (
     <div className='grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 gap-4'>
@@ -18,9 +22,9 @@ const DashboardGrid = async () => {
         />
 
         <DashboardCard
-          description={`Your last journal was ${formatDate(lastJournalDate!)}`}
+          description={journalMessage}
           gradient='teal-lime'
-          cta={{ text: 'Complete Today&apos;s Journal', url: '/journal' }}
+          cta={{ text: "Complete Today's Journal", url: '/journal' }}
         />
       </div>
 

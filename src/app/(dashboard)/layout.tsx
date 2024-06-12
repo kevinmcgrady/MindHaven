@@ -14,7 +14,7 @@ export default async function RootLayout({
   await syncUser();
 
   return (
-    <main className='container py-4 h-screen flex flex-col'>
+    <main className='container py-4 min-h-screen flex flex-col'>
       <Header />
       <section className='flex flex-1'>
         <LeftSidebar />

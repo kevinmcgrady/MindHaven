@@ -1,23 +1,27 @@
 import { format } from 'date-fns';
 import Link from 'next/link';
 
-import { Chart } from '@/components/Chart';
 import CardSection from '@/components/layout/CardSection';
+import ProgressSection from '@/components/progress/ProgressSection';
 import PageHeader from '@/components/site/PageHeader';
 import { Button } from '@/components/ui/button';
-import { cn } from '@/lib/utils';
-import { getJournalsByMonthAndYear } from '@/queries/journal';
+import { urls } from '@/constants/urls';
+import {
+  getAllJournalCount,
+  getJournalsByMonthAndYear,
+} from '@/queries/journal';
 
 const page = async () => {
   const currentMonth = format(new Date(), 'MMM');
   const currentYear = format(new Date(), 'yyyy');
 
+  const journalCount = await getAllJournalCount();
   const usersJournals = await getJournalsByMonthAndYear(
     currentMonth,
     currentYear,
   );
 
-  const hasJournals = usersJournals && usersJournals.length > 0;
+  const hasCreatedAJournalBefore = journalCount && journalCount._count > 0;
 
   return (
     <div className='h-full flex flex-col'>
@@ -28,27 +32,24 @@ const page = async () => {
         />
       </CardSection>
 
-      <CardSection
-        className={cn('flex flex-col', {
-          'h-1/2': hasJournals,
-          'h-fit': !hasJournals,
-        })}
-      >
-        {!hasJournals ? (
-          <>
-            <p className='text-muted-foreground text-center'>
-              You don&apos;t have any journals yet!
-            </p>
-            <Button size='sm' className='w-fit mx-auto mt-4'>
-              <Link href='/journal'>Create your first journal</Link>
-            </Button>
-          </>
-        ) : (
-          <Chart journals={usersJournals} />
-        )}
-      </CardSection>
+      {hasCreatedAJournalBefore && (
+        <ProgressSection
+          defaultJournals={usersJournals || []}
+          defaultMonth={currentMonth}
+          defaultYear={currentYear}
+        />
+      )}
 
-      {hasJournals && <CardSection>x</CardSection>}
+      {!hasCreatedAJournalBefore && (
+        <CardSection>
+          <h2 className='mb-2 font-light text-muted-foreground'>
+            Create your first journal
+          </h2>
+          <Link href={urls.dashboard.journal}>
+            <Button>Create Journal</Button>
+          </Link>
+        </CardSection>
+      )}
     </div>
   );
 };

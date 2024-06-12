@@ -8,12 +8,9 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
 import { getJournalByDate } from '@/queries/journal';
 
-import ListenButton from '../ListenButton';
-import { Badge } from '../ui/badge';
 import { Button } from '../ui/button';
 import { Calendar } from '../ui/calendar';
 import {

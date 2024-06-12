@@ -9,6 +9,7 @@ import { z } from 'zod';
 
 import { updateUsersProfile } from '@/queries/auth';
 
+import CardSection from './layout/CardSection';
 import { Button } from './ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Input } from './ui/input';
@@ -51,9 +52,9 @@ export const WelcomeScreen = () => {
   };
 
   return (
-    <div>
-      <h1 className='font-semibold mb-2 text-xl'>Welcome to MindHaven 👋</h1>
-      <p className='mb-8 font-light text-lg'>
+    <CardSection noSpacing>
+      <h1 className='font-semibold mb-2 text-2xl'>Welcome to MindHaven 👋</h1>
+      <p className='mb-8 font-light text-muted-foreground'>
         We are glad you have decided to track <strong>your</strong> mental
         health journey with us!
       </p>
@@ -124,6 +125,6 @@ export const WelcomeScreen = () => {
           </Button>
         </form>
       </Form>
-    </div>
+    </CardSection>
   );
 };

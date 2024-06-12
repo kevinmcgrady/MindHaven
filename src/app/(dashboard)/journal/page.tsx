@@ -23,9 +23,7 @@ const page = async () => {
       <CardSection>
         {!usersTodayJornal && (
           <>
-            <h2 className='font-light text-muted-foreground mb-2'>
-              You don&apos;t have an entry for today!
-            </h2>
+            <h2 className='font-light text-muted-foreground mb-2'>Today</h2>
             <CreateJornalDialog />
           </>
         )}
@@ -38,7 +36,9 @@ const page = async () => {
       <CardSection>
         <h2 className='font-light text-muted-foreground mb-2'>Previous</h2>
         {!hasUsersJournals ? (
-          <p>You don&apos;t have any journals to display</p>
+          <p className='text-muted-foreground text-sm'>
+            You don&apos;t have any journals to display
+          </p>
         ) : (
           <PreviousJournals journals={usersJournals} />
         )}
