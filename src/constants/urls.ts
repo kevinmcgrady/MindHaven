@@ -9,5 +9,6 @@ export const urls = {
     journal: '/journal',
     profile: '/profile',
     tracking: '/tracking',
+    billing: '/billing',
   },
 };

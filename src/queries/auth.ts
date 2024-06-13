@@ -44,7 +44,7 @@ export const getUserDetails = async () => {
 };
 
 export const updateUsersProfile = async (
-  userDetails: Pick<User, 'bio' | 'country' | 'mentalHealthGoal'>,
+  userDetails: Pick<User, 'bio' | 'country' | 'mentalHealthGoal' | 'username'>,
 ) => {
   const authUser = await currentUser();
 
@@ -67,6 +67,7 @@ export const updateUsersProfile = async (
       bio: userDetails.bio,
       mentalHealthGoal: userDetails.mentalHealthGoal,
       country: userDetails.country,
+      username: userDetails.username,
       hasCompletedProfile: true,
     },
   });

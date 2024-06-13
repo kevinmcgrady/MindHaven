@@ -20,7 +20,7 @@ const UserProfileHeader = ({ user }: UserProfileHeaderProps) => {
           className='aspect-square rounded-full mx-auto -mt-[50px] z-10 relative'
         />
         <p className='text-center font-light text-sm mt-4 text-muted-foreground'>
-          @kevinmcgrady
+          @{user.username}
         </p>
         <h2 className='text-center mt-2 font-semibold text-xl'>
           {user.firstName} {user.lastName}

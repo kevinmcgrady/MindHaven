@@ -24,6 +24,7 @@ export const WelcomeScreen = () => {
     country: z.string().min(2).max(50),
     bio: z.string().min(2).max(500),
     mentalHealthGoal: z.string().min(2).max(500),
+    username: z.string().min(2).max(20),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -32,6 +33,7 @@ export const WelcomeScreen = () => {
       country: '',
       bio: '',
       mentalHealthGoal: '',
+      username: '',
     },
   });
 
@@ -42,6 +44,7 @@ export const WelcomeScreen = () => {
         bio: values.bio,
         country: values.country,
         mentalHealthGoal: values.mentalHealthGoal,
+        username: values.username,
       });
       router.refresh();
     } catch (error) {
@@ -61,6 +64,19 @@ export const WelcomeScreen = () => {
 
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className='space-y-8'>
+          <FormField
+            control={form.control}
+            name='username'
+            render={({ field }) => (
+              <FormItem>
+                <Label className='text-sm font-semibold'>Username</Label>
+                <FormControl>
+                  <Input className='mt-2' type='text' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
           <FormField
             control={form.control}
             name='country'
