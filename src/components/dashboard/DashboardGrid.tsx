@@ -36,7 +36,7 @@ const DashboardGrid = async () => {
         />
 
         <DashboardCard
-          description={`You are currently on the ${user?.plan} Plan`}
+          description={`You are currently on the FREE Plan`}
           gradient='green-blue'
           cta={{ text: 'Manage Plan', url: '/' }}
         />

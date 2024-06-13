@@ -7,11 +7,6 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
 }
 
-enum PLAN {
-  FREE
-  PAID
-}
-
 model User {
   id                  String    @id @default(uuid())
   firstName           String
@@ -21,7 +16,6 @@ model User {
   emailAddress        String    @unique
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
-  plan                PLAN      @default(FREE)
   bio                 String?
   mentalHealthGoal    String?
   country             String?
