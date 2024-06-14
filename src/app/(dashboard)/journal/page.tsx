@@ -3,12 +3,24 @@ import JournalCard from '@/components/journal/JournalCard';
 import PreviousJournals from '@/components/journal/PreviousJournals';
 import CardSection from '@/components/layout/CardSection';
 import PageHeader from '@/components/site/PageHeader';
+import { Separator } from '@/components/ui/separator';
+import { PLANS } from '@/config/plans';
 import { getAllJournals, getJournalByDate } from '@/queries/journal';
+import { getUserSubscriptionPlan } from '@/queries/stripe';
 
 const page = async () => {
-  const usersTodayJornal = await getJournalByDate(new Date());
+  const usersTodayJornals = await getJournalByDate(new Date());
   const usersJournals = await getAllJournals();
+  const subscriptionPlan = await getUserSubscriptionPlan();
+
   const hasUsersJournals = usersJournals && usersJournals.length > 0;
+  const hasTodayUsersJournals =
+    usersTodayJornals && usersTodayJornals.length > 0;
+
+  const hasUserReachedQuota =
+    subscriptionPlan?.isSubscribed &&
+    usersTodayJornals &&
+    usersTodayJornals.length < PLANS.pro.features.noOfEntriesPerDay;
 
   return (
     <>
@@ -21,15 +33,30 @@ const page = async () => {
       </CardSection>
 
       <CardSection>
-        {!usersTodayJornal && (
-          <>
-            <h2 className='font-light text-muted-foreground mb-2'>Today</h2>
-            <CreateJornalDialog />
-          </>
+        <h2 className='font-light text-muted-foreground mb-2'>Today</h2>
+
+        {!hasTodayUsersJournals && (
+          <CreateJornalDialog isProPlan={subscriptionPlan?.isSubscribed!} />
         )}
 
-        {usersTodayJornal && (
-          <JournalCard title='Today' journal={usersTodayJornal} />
+        {hasTodayUsersJournals && (
+          <div className='space-y-4'>
+            {usersTodayJornals.map((journal, index) => (
+              <>
+                <JournalCard
+                  dense={usersTodayJornals.length > 1}
+                  journal={journal}
+                />
+                {index !== usersTodayJornals.length - 1 && <Separator />}
+              </>
+            ))}
+          </div>
+        )}
+
+        {hasUserReachedQuota && (
+          <div className='mt-4'>
+            <CreateJornalDialog isProPlan={subscriptionPlan.isSubscribed} />
+          </div>
         )}
       </CardSection>
 

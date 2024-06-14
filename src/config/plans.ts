@@ -8,7 +8,7 @@ export const PLANS = {
     name: PlanType.FREE,
     slug: PlanType.FREE.toLocaleLowerCase(),
     features: {
-      voices: 2,
+      voices: 3,
       noOfEntriesPerDay: 1,
       lengthOfJournals: 2000,
     },
@@ -24,9 +24,9 @@ export const PLANS = {
     name: PlanType.PRO,
     slug: PlanType.PRO.toLowerCase(),
     features: {
-      voices: 'all of them',
-      noOfEntriesPerDay: 'unlimited',
-      lengthOfJournals: 'unlimited',
+      voices: 6,
+      noOfEntriesPerDay: 3,
+      lengthOfJournals: 10000,
     },
     price: {
       amount: 10,

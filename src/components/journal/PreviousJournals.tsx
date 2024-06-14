@@ -21,16 +21,18 @@ import {
   FormMessage,
 } from '../ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
+import { Separator } from '../ui/separator';
 import JournalCard from './JournalCard';
 
 type PreviousJournalsProps = {
   journals: Journal[];
 };
 
-type SelectedJournal = Journal | null | undefined;
+type SelectedJournals = Journal[] | null | undefined;
 
 const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
-  const [selectedJournal, setSelectedJournal] = useState<SelectedJournal>(null);
+  const [selectedJournals, setSelectedJournals] =
+    useState<SelectedJournals>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
@@ -51,10 +53,10 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
   const handleSubmit = async (entryDate: Date | null) => {
     try {
       if (!entryDate) return;
-      setSelectedJournal(null);
+      setSelectedJournals(null);
       setIsLoading(true);
       const journal = await getJournalByDate(entryDate);
-      setSelectedJournal(journal);
+      setSelectedJournals(journal);
     } catch (error) {
       console.log(error);
     } finally {
@@ -124,7 +126,19 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
           </div>
         )}
 
-        {selectedJournal && <JournalCard journal={selectedJournal} />}
+        {selectedJournals && (
+          <div className='space-y-4'>
+            {selectedJournals.map((journal, index) => (
+              <>
+                <JournalCard
+                  dense={selectedJournals.length > 1}
+                  journal={journal}
+                />
+                {index !== selectedJournals.length - 1 && <Separator />}
+              </>
+            ))}
+          </div>
+        )}
       </section>
     </>
   );

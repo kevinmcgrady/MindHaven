@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { PLANS } from '@/config/plans';
 import { aiVoices } from '@/constants/aiVoices';
 import { moods } from '@/constants/moods';
 import { urls } from '@/constants/urls';
@@ -33,15 +34,26 @@ import {
 } from '../ui/select';
 import { Textarea } from '../ui/textarea';
 
-const CreateJornalDialog = () => {
+type CreateJornalDialogProps = {
+  isProPlan: boolean;
+};
+
+const CreateJornalDialog = ({ isProPlan }: CreateJornalDialogProps) => {
   const [selectedVoice, setSelectedVoice] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
-
   const router = useRouter();
+
+  const journalLength = isProPlan
+    ? PLANS.pro.features.lengthOfJournals
+    : PLANS.free.features.lengthOfJournals;
+
+  const voices = isProPlan
+    ? aiVoices
+    : aiVoices.filter((voice) => voice.isFreePlan);
 
   const formSchema = z.object({
     title: z.string().min(2).max(50),
-    journal: z.string().min(2),
+    journal: z.string().min(2).max(journalLength),
     voice: z.string(),
     mood: z.string(),
   });
@@ -154,7 +166,7 @@ const CreateJornalDialog = () => {
                     </FormControl>
 
                     <SelectContent>
-                      {aiVoices.map((voice) => (
+                      {voices.map((voice) => (
                         <SelectItem key={voice.name} value={voice.name}>
                           {voice.name}
                         </SelectItem>

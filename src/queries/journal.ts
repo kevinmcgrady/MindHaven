@@ -41,7 +41,7 @@ export const getJournalByDate = async (date: Date) => {
   const selectedDate =
     format(date, 'yyyy-MM-dd').split('T')[0] + 'T00:00:00.000Z';
 
-  const journal = await db.journal.findFirst({
+  const journals = await db.journal.findMany({
     where: {
       userId: user.id,
       createdAt: {
@@ -50,7 +50,7 @@ export const getJournalByDate = async (date: Date) => {
     },
   });
 
-  return journal;
+  return journals;
 };
 
 export const getAllJournals = async () => {
