@@ -13,11 +13,19 @@ const page = async () => {
       <CardSection noSpacing>
         <PageHeader
           title='Billing'
-          description='Manage your plan with MindHaven'
+          description={
+            subscriptionPlan?.isSubscribed
+              ? 'Manage your plan with MindHaven'
+              : 'Upgrade to the Pro plan to get access to more features!'
+          }
         />
       </CardSection>
       <CardSection>
-        <h2 className='mb-2 font-semibold text-lg'>Manage your subscription</h2>
+        <h2 className='mb-2 font-semibold text-lg'>
+          {subscriptionPlan?.isSubscribed
+            ? 'Manage your subscription'
+            : 'Upgrade to the Pro plan'}
+        </h2>
         <p className='font-light text-muted-foreground mb-4'>
           You are currently on the <strong>{subscriptionPlan?.name}</strong>{' '}
           plan.
@@ -40,6 +48,51 @@ const page = async () => {
           </p>
         )}
       </CardSection>
+      <CardSection>
+        <h2 className='font-semibold text-lg mb-2'>
+          Current Features you have on the {subscriptionPlan?.name} plan
+        </h2>
+        <div className='space-y-2 text-sm '>
+          <p>
+            <strong>Voices:</strong>{' '}
+            {subscriptionPlan?.isSubscribed
+              ? PLANS.pro.features.voices
+              : PLANS.free.features.voices}
+          </p>
+          <p>
+            <strong>Journals per day:</strong>{' '}
+            {subscriptionPlan?.isSubscribed
+              ? PLANS.pro.features.noOfEntriesPerDay
+              : PLANS.free.features.noOfEntriesPerDay}
+          </p>
+          <p>
+            <strong>Length of journals:</strong>{' '}
+            {subscriptionPlan?.isSubscribed
+              ? PLANS.pro.features.lengthOfJournals
+              : PLANS.free.features.lengthOfJournals}
+          </p>
+        </div>
+      </CardSection>
+      {!subscriptionPlan?.isSubscribed && (
+        <CardSection>
+          <h2 className='font-semibold text-lg mb-2'>
+            What you would get on the Pro plan
+          </h2>
+          <div className='space-y-2 text-sm '>
+            <p>
+              <strong>Voices:</strong> {PLANS.pro.features.voices}
+            </p>
+            <p>
+              <strong>Journals per day:</strong>{' '}
+              {PLANS.pro.features.noOfEntriesPerDay}
+            </p>
+            <p>
+              <strong>Length of journals:</strong>{' '}
+              {PLANS.pro.features.lengthOfJournals}
+            </p>
+          </div>
+        </CardSection>
+      )}
     </>
   );
 };

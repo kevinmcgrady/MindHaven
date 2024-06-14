@@ -1,11 +1,12 @@
+import { urls } from '@/constants/urls';
 import { formatDate } from '@/lib/formatDate';
-import { getUserDetails } from '@/queries/auth';
 import { getAllJournalCount, getLastJournalDate } from '@/queries/journal';
+import { getUserSubscriptionPlan } from '@/queries/stripe';
 
 import DashboardCard from './DashboardCard';
 
 const DashboardGrid = async () => {
-  const user = await getUserDetails();
+  const subscriptionPlan = await getUserSubscriptionPlan();
   const journalCount = await getAllJournalCount();
   const lastJournalDate = await getLastJournalDate();
   const journalMessage =
@@ -24,7 +25,10 @@ const DashboardGrid = async () => {
         <DashboardCard
           description={journalMessage}
           gradient='teal-lime'
-          cta={{ text: "Complete Today's Journal", url: '/journal' }}
+          cta={{
+            text: "Complete Today's Journal",
+            url: urls.dashboard.journal,
+          }}
         />
       </div>
 
@@ -32,13 +36,13 @@ const DashboardGrid = async () => {
         <DashboardCard
           description={`You have completed ${journalCount?._count} jounals since joining!`}
           gradient='pink-orange'
-          cta={{ text: 'View Journals', url: '/journal' }}
+          cta={{ text: 'View Journals', url: urls.dashboard.journal }}
         />
 
         <DashboardCard
-          description={`You are currently on the FREE Plan`}
+          description={`You are currently on the ${subscriptionPlan?.name} Plan`}
           gradient='green-blue'
-          cta={{ text: 'Manage Plan', url: '/' }}
+          cta={{ text: 'Manage Plan', url: urls.dashboard.billing }}
         />
       </div>
     </div>
