@@ -1,99 +1,61 @@
 import { Fragment } from 'react';
 
-import CreateStripeSessionButton from '@/components/CreateStripeSessionButton';
+import ManageSubscriptionSection from '@/components/billing/ManageSubscriptionSection';
+import PlanFeaturesSection from '@/components/billing/PlanFeaturesSection';
 import CardSection from '@/components/layout/CardSection';
 import PageHeader from '@/components/site/PageHeader';
 import { PLANS } from '@/config/plans';
 import { getUserSubscriptionPlan } from '@/queries/stripe';
-import { formatDate } from '@/utils/formatDate';
 
 const page = async () => {
   const subscriptionPlan = await getUserSubscriptionPlan();
 
+  const pageDescription = subscriptionPlan?.isSubscribed
+    ? 'Manage your plan with MindHaven'
+    : 'Upgrade to the Pro plan to get access to more features!';
+
+  const subscriptionSectionTitle = subscriptionPlan?.isSubscribed
+    ? 'Manage your subscription'
+    : 'Upgrade to the Pro plan';
+
+  const subscriptionSectionButtonText = subscriptionPlan?.isSubscribed
+    ? 'Manage Subscription'
+    : 'Upgrade to the Pro Plan';
+
+  const currentPlanDetails = subscriptionPlan?.isSubscribed
+    ? PLANS.pro
+    : PLANS.free;
+
   return (
     <Fragment>
       <CardSection noSpacing>
-        <PageHeader
-          title='Billing'
-          description={
-            subscriptionPlan?.isSubscribed
-              ? 'Manage your plan with MindHaven'
-              : 'Upgrade to the Pro plan to get access to more features!'
-          }
-        />
+        <PageHeader title='Billing' description={pageDescription} />
       </CardSection>
-      <CardSection>
-        <h2 className='mb-2 font-semibold text-lg'>
-          {subscriptionPlan?.isSubscribed
-            ? 'Manage your subscription'
-            : 'Upgrade to the Pro plan'}
-        </h2>
-        <p className='font-light text-muted-foreground mb-4'>
-          You are currently on the <strong>{subscriptionPlan?.name}</strong>{' '}
-          plan.
-        </p>
-        <CreateStripeSessionButton
-          buttonText={
-            subscriptionPlan?.isSubscribed
-              ? 'Manage Subscription'
-              : 'Upgrade to the Pro Plan'
-          }
-          stripeProductId={PLANS.pro.price.priceIds.test}
-        />
 
-        {subscriptionPlan?.isSubscribed && (
-          <p className='mt-4 font-light text-sm text-muted-foreground'>
-            {subscriptionPlan.isCanceled
-              ? 'Your plan will end on'
-              : 'Your plan will renew on'}{' '}
-            {formatDate(subscriptionPlan.stripeCurrentPeriodEnd!)}
-          </p>
-        )}
-      </CardSection>
-      <CardSection>
-        <h2 className='font-semibold text-lg mb-2'>
-          Current Features you have on the {subscriptionPlan?.name} plan
-        </h2>
-        <div className='space-y-2 text-sm '>
-          <p>
-            <strong>Voices:</strong>{' '}
-            {subscriptionPlan?.isSubscribed
-              ? PLANS.pro.features.voices
-              : PLANS.free.features.voices}
-          </p>
-          <p>
-            <strong>Journals per day:</strong>{' '}
-            {subscriptionPlan?.isSubscribed
-              ? PLANS.pro.features.noOfEntriesPerDay
-              : PLANS.free.features.noOfEntriesPerDay}
-          </p>
-          <p>
-            <strong>Length of journals:</strong>{' '}
-            {subscriptionPlan?.isSubscribed
-              ? PLANS.pro.features.lengthOfJournals
-              : PLANS.free.features.lengthOfJournals}
-          </p>
-        </div>
-      </CardSection>
+      <ManageSubscriptionSection
+        title={subscriptionSectionTitle}
+        planType={subscriptionPlan?.name!}
+        productCode={PLANS.pro.price.priceIds.test}
+        productPeriodEndDate={subscriptionPlan?.stripeCurrentPeriodEnd!}
+        buttonText={subscriptionSectionButtonText}
+        hasCancelled={subscriptionPlan?.isCanceled!}
+        isSubscribed={subscriptionPlan?.isSubscribed!}
+      />
+
+      <PlanFeaturesSection
+        title={`Current Features you have on the ${currentPlanDetails.name} plan`}
+        lengthOfJournals={currentPlanDetails.features.lengthOfJournals}
+        noOfEntriesPerDay={currentPlanDetails.features.noOfEntriesPerDay}
+        noOfVoices={currentPlanDetails.features.voices}
+      />
+
       {!subscriptionPlan?.isSubscribed && (
-        <CardSection>
-          <h2 className='font-semibold text-lg mb-2'>
-            What you would get on the Pro plan
-          </h2>
-          <div className='space-y-2 text-sm '>
-            <p>
-              <strong>Voices:</strong> {PLANS.pro.features.voices}
-            </p>
-            <p>
-              <strong>Journals per day:</strong>{' '}
-              {PLANS.pro.features.noOfEntriesPerDay}
-            </p>
-            <p>
-              <strong>Length of journals:</strong>{' '}
-              {PLANS.pro.features.lengthOfJournals}
-            </p>
-          </div>
-        </CardSection>
+        <PlanFeaturesSection
+          title='What you would get on the Pro plan'
+          lengthOfJournals={PLANS.pro.features.lengthOfJournals}
+          noOfEntriesPerDay={PLANS.pro.features.noOfEntriesPerDay}
+          noOfVoices={PLANS.pro.features.voices}
+        />
       )}
     </Fragment>
   );
