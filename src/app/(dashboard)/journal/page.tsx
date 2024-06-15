@@ -4,6 +4,7 @@ import CreateJornalDialog from '@/components/journal/CreateJornalDialog';
 import JournalCard from '@/components/journal/JournalCard';
 import PreviousJournals from '@/components/journal/PreviousJournals';
 import CardSection from '@/components/layout/CardSection';
+import EmptyState from '@/components/site/EmptyState';
 import PageHeader from '@/components/site/PageHeader';
 import { Separator } from '@/components/ui/separator';
 import { PLANS } from '@/config/plans';
@@ -36,7 +37,15 @@ const page = async () => {
       </CardSection>
 
       <CardSection>
-        <h2 className='font-light text-muted-foreground mb-2'>Today</h2>
+        <div className='flex items-center justify-between'>
+          <h2 className='font-light text-muted-foreground mb-2'>Today</h2>
+          {isUserWithinQuota && hasTodayUsersJournals && (
+            <CreateJornalDialog
+              varient='icon'
+              isProPlan={subscriptionPlan.isSubscribed}
+            />
+          )}
+        </div>
 
         {!hasTodayUsersJournals && (
           <CreateJornalDialog isProPlan={subscriptionPlan?.isSubscribed!} />
@@ -61,23 +70,12 @@ const page = async () => {
             })}
           </div>
         )}
-
-        {isUserWithinQuota && hasTodayUsersJournals && (
-          <div className='mt-4'>
-            <CreateJornalDialog
-              buttonText='Create another journal'
-              isProPlan={subscriptionPlan.isSubscribed}
-            />
-          </div>
-        )}
       </CardSection>
 
       <CardSection>
         <h2 className='font-light text-muted-foreground mb-2'>Previous</h2>
         {!hasUsersJournals ? (
-          <p className='text-muted-foreground text-sm'>
-            You don&apos;t have any journals to display
-          </p>
+          <EmptyState description={`You don't have any journals to display`} />
         ) : (
           <PreviousJournals journals={usersJournals} />
         )}

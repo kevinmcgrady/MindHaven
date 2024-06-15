@@ -27,11 +27,15 @@ import JournalCard from './JournalCard';
 
 type PreviousJournalsProps = {
   journals: Journal[];
+  disableCalendarNavigation?: boolean;
 };
 
 type SelectedJournals = Journal[] | null | undefined;
 
-const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
+const PreviousJournals = ({
+  journals,
+  disableCalendarNavigation = false,
+}: PreviousJournalsProps) => {
   const [selectedJournals, setSelectedJournals] =
     useState<SelectedJournals>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
@@ -98,6 +102,8 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
                   </PopoverTrigger>
                   <PopoverContent className='w-auto p-0' align='start'>
                     <Calendar
+                      showOutsideDays={false}
+                      disableNavigation={disableCalendarNavigation}
                       mode='single'
                       selected={field.value}
                       onSelect={async (event) => {

@@ -7,7 +7,9 @@ import { cn } from '@/lib/utils';
 import { getJournalsByMonthAndYear } from '@/queries/journal';
 
 import JournalTable from '../journal/JournalTable';
+import PreviousJournals from '../journal/PreviousJournals';
 import CardSection from '../layout/CardSection';
+import EmptyState from '../site/EmptyState';
 import { Separator } from '../ui/separator';
 import Chart from './components/Chart';
 import MonthYearDropdown from './components/MonthYearDropdown';
@@ -70,10 +72,9 @@ const ProgressSection = ({
 
           {!hasChartData && (
             <div className='mt-8'>
-              <p className='text-muted-foreground text-center'>
-                You don&apos;t have any journals for {selectedMonth}{' '}
-                {selectedYear}
-              </p>
+              <EmptyState
+                description={`You don't have any journals for ${selectedMonth} ${selectedYear}`}
+              />
             </div>
           )}
           {hasChartData && <Chart chartData={chartData} />}
@@ -88,7 +89,10 @@ const ProgressSection = ({
             job 😀
           </p>
           <Separator className='mb-4' />
-          <JournalTable journals={selectedJournals} />
+          <PreviousJournals
+            disableCalendarNavigation
+            journals={selectedJournals}
+          />
         </CardSection>
       )}
     </Fragment>

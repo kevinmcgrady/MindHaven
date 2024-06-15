@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -36,12 +36,12 @@ import { Textarea } from '../ui/textarea';
 
 type CreateJornalDialogProps = {
   isProPlan: boolean;
-  buttonText?: string;
+  varient?: 'default' | 'icon';
 };
 
 const CreateJornalDialog = ({
   isProPlan,
-  buttonText,
+  varient = 'default',
 }: CreateJornalDialogProps) => {
   const [selectedVoice, setSelectedVoice] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
@@ -97,7 +97,9 @@ const CreateJornalDialog = ({
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>{buttonText ? buttonText : 'Create a new jornal'}</Button>
+        <Button size={varient === 'icon' ? 'icon' : 'default'}>
+          {varient === 'icon' ? <Plus size={15} /> : 'Create a new jornal'}
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <Form {...form}>
