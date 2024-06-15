@@ -1,8 +1,10 @@
+import { Fragment } from 'react';
+
 import { Button } from '../ui/button';
 
 const UserTags = () => {
   return (
-    <>
+    <Fragment>
       <h3 className='font-semibold text-lg mb-4'>Tags</h3>
       <div className='space-x-2'>
         <Button size='sm' variant='outline'>
@@ -15,7 +17,7 @@ const UserTags = () => {
           autism
         </Button>
       </div>
-    </>
+    </Fragment>
   );
 };
 

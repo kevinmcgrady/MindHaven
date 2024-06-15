@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import CreateStripeSessionButton from '@/components/CreateStripeSessionButton';
 import CardSection from '@/components/layout/CardSection';
 import PageHeader from '@/components/site/PageHeader';
@@ -9,7 +11,7 @@ const page = async () => {
   const subscriptionPlan = await getUserSubscriptionPlan();
 
   return (
-    <>
+    <Fragment>
       <CardSection noSpacing>
         <PageHeader
           title='Billing'
@@ -93,7 +95,7 @@ const page = async () => {
           </div>
         </CardSection>
       )}
-    </>
+    </Fragment>
   );
 };
 

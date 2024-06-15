@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import CardSection from '@/components/layout/CardSection';
 import UserBadges from '@/components/user/UserBadges';
 import UserProfileHeader from '@/components/user/UserProfileHeader';
@@ -13,7 +15,7 @@ const page = async () => {
   }
 
   return (
-    <>
+    <Fragment>
       <CardSection noSpacing>
         <UserProfileHeader user={user} />
       </CardSection>
@@ -30,7 +32,7 @@ const page = async () => {
       <CardSection>
         <UserBadges />
       </CardSection>
-    </>
+    </Fragment>
   );
 };
 

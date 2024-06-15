@@ -1,7 +1,7 @@
 'use client';
 
 import { Journal } from '@prisma/client';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 
 import { cn } from '@/lib/utils';
 import { getJournalsByMonthAndYear } from '@/queries/journal';
@@ -54,7 +54,7 @@ const ProgressSection = ({
   };
 
   return (
-    <>
+    <Fragment>
       <CardSection
         className={cn('flex flex-col h-[500px]', {
           'h-fit': !hasChartData,
@@ -91,7 +91,7 @@ const ProgressSection = ({
           <JournalTable journals={selectedJournals} />
         </CardSection>
       )}
-    </>
+    </Fragment>
   );
 };
 

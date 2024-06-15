@@ -1,3 +1,5 @@
+import { Fragment } from 'react';
+
 import CreateJornalDialog from '@/components/journal/CreateJornalDialog';
 import JournalCard from '@/components/journal/JournalCard';
 import PreviousJournals from '@/components/journal/PreviousJournals';
@@ -23,7 +25,7 @@ const page = async () => {
     usersTodayJornals.length < PLANS.pro.features.noOfEntriesPerDay;
 
   return (
-    <>
+    <Fragment>
       <CardSection noSpacing>
         <PageHeader
           title='My Journal'
@@ -42,13 +44,13 @@ const page = async () => {
         {hasTodayUsersJournals && (
           <div className='space-y-4'>
             {usersTodayJornals.map((journal, index) => (
-              <>
+              <Fragment key={journal.id}>
                 <JournalCard
                   dense={usersTodayJornals.length > 1}
                   journal={journal}
                 />
                 {index !== usersTodayJornals.length - 1 && <Separator />}
-              </>
+              </Fragment>
             ))}
           </div>
         )}
@@ -73,7 +75,7 @@ const page = async () => {
           <PreviousJournals journals={usersJournals} />
         )}
       </CardSection>
-    </>
+    </Fragment>
   );
 };
 

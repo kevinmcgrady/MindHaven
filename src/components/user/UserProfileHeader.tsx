@@ -1,5 +1,6 @@
 import { User } from '@prisma/client';
 import Image from 'next/image';
+import { Fragment } from 'react';
 
 import { formatDate } from '@/utils/formatDate';
 
@@ -9,7 +10,7 @@ type UserProfileHeaderProps = {
 
 const UserProfileHeader = ({ user }: UserProfileHeaderProps) => {
   return (
-    <>
+    <Fragment>
       <div className='bg-overlay bg-cover bg-no-repeat bg-right-bottom h-40 rounded-t-xl relative' />
       <div className='px-2'>
         <Image
@@ -36,7 +37,7 @@ const UserProfileHeader = ({ user }: UserProfileHeaderProps) => {
           {user.bio}
         </p>
       </div>
-    </>
+    </Fragment>
   );
 };
 

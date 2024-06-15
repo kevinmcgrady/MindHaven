@@ -4,7 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { Journal } from '@prisma/client';
 import { format } from 'date-fns';
 import { CalendarIcon, Loader2 } from 'lucide-react';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
@@ -65,7 +65,7 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
   };
 
   return (
-    <>
+    <Fragment>
       <Form {...form}>
         <form className='space-y-8'>
           <FormField
@@ -129,18 +129,18 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
         {selectedJournals && (
           <div className='space-y-4'>
             {selectedJournals.map((journal, index) => (
-              <>
+              <Fragment key={journal.id}>
                 <JournalCard
                   dense={selectedJournals.length > 1}
                   journal={journal}
                 />
                 {index !== selectedJournals.length - 1 && <Separator />}
-              </>
+              </Fragment>
             ))}
           </div>
         )}
       </section>
-    </>
+    </Fragment>
   );
 };
 
