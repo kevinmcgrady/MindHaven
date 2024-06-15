@@ -1,6 +1,7 @@
 import { SignedIn, SignedOut } from '@clerk/nextjs';
 import Link from 'next/link';
 
+import { urls } from '@/constants/urls';
 import { getUserDetails } from '@/queries/auth';
 
 import { Button } from '../ui/button';
@@ -25,7 +26,7 @@ export const Header = async () => {
         />
       </SignedIn>
       <SignedOut>
-        <Link href='/sign-in'>
+        <Link href={urls.auth.signIn}>
           <Button>Sign in</Button>
         </Link>
       </SignedOut>

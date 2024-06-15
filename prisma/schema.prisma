@@ -7,6 +7,23 @@ datasource db {
   url      = env("POSTGRES_PRISMA_URL")
 }
 
+enum Mood {
+  happy
+  sad
+  exited
+  anxious
+  depressed
+}
+
+enum Voice {
+  alloy
+  echo
+  fable
+  onyx
+  nova
+  shimmer
+}
+
 model User {
   id                  String    @id @default(uuid())
   firstName           String
@@ -31,8 +48,8 @@ model User {
 model Journal {
   id             String   @id @default(uuid())
   title          String
-  mood           String
-  voice          String
+  mood           Mood
+  voice          Voice
   entry          String
   createdAt      DateTime @default(now()) @db.Date
   createdAtMonth String

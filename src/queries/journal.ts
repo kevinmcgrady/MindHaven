@@ -1,6 +1,7 @@
 'use server';
 
 import { currentUser } from '@clerk/nextjs/server';
+import { Mood, Voice } from '@prisma/client';
 import { format } from 'date-fns';
 
 import { db } from '@/lib/db';
@@ -8,8 +9,8 @@ import { db } from '@/lib/db';
 export const createJornal = async (jornal: {
   title: string;
   entry: string;
-  mood: string;
-  voice: string;
+  mood: Mood;
+  voice: Voice;
   audioUrl: string;
 }) => {
   const user = await currentUser();

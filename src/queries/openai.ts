@@ -1,10 +1,9 @@
 'use server';
 
 import { currentUser } from '@clerk/nextjs/server';
+import { Voice } from '@prisma/client';
 import { put } from '@vercel/blob';
 import OpenAi from 'openai';
-
-import { Voice } from '../types/index';
 
 const openai = new OpenAi({
   apiKey: process.env.OPENAI_API_KEY,

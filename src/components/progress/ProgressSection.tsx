@@ -6,7 +6,6 @@ import { Fragment, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { getJournalsByMonthAndYear } from '@/queries/journal';
 
-import JournalTable from '../journal/JournalTable';
 import PreviousJournals from '../journal/PreviousJournals';
 import CardSection from '../layout/CardSection';
 import EmptyState from '../site/EmptyState';

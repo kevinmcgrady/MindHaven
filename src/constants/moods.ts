@@ -1,4 +1,4 @@
-import { Mood } from '@/types';
+import { Mood } from '@prisma/client';
 
 type MoodType = {
   name: Mood;

@@ -1,6 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Mood, Voice } from '@prisma/client';
 import { Loader2, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
@@ -82,8 +83,8 @@ const CreateJornalDialog = ({
         title: values.title,
         entry: values.journal,
         audioUrl: url,
-        mood: values.mood,
-        voice: values.voice,
+        mood: values.mood as Mood,
+        voice: values.voice as Voice,
       });
 
       router.push(urls.dashboard.journal);

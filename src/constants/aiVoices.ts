@@ -1,4 +1,4 @@
-import { Voice } from '@/types';
+import { Voice } from '@prisma/client';
 
 type VoiceType = {
   name: Voice;
