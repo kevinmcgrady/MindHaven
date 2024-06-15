@@ -8,6 +8,7 @@ import { Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { moods } from '@/constants/moods';
 import { cn } from '@/lib/utils';
 import { getJournalByDate } from '@/queries/journal';
 
@@ -128,15 +129,21 @@ const PreviousJournals = ({ journals }: PreviousJournalsProps) => {
 
         {selectedJournals && (
           <div className='space-y-4'>
-            {selectedJournals.map((journal, index) => (
-              <Fragment key={journal.id}>
-                <JournalCard
-                  dense={selectedJournals.length > 1}
-                  journal={journal}
-                />
-                {index !== selectedJournals.length - 1 && <Separator />}
-              </Fragment>
-            ))}
+            {selectedJournals.map((journal, index) => {
+              const badgeColor = moods.find(
+                (mood) => mood.name === journal.mood.toLowerCase(),
+              )?.color;
+              return (
+                <Fragment key={journal.id}>
+                  <JournalCard
+                    badgeColor={badgeColor!}
+                    dense={selectedJournals.length > 1}
+                    journal={journal}
+                  />
+                  {index !== selectedJournals.length - 1 && <Separator />}
+                </Fragment>
+              );
+            })}
           </div>
         )}
       </section>

@@ -7,6 +7,7 @@ import CardSection from '@/components/layout/CardSection';
 import PageHeader from '@/components/site/PageHeader';
 import { Separator } from '@/components/ui/separator';
 import { PLANS } from '@/config/plans';
+import { moods } from '@/constants/moods';
 import { getAllJournals, getJournalByDate } from '@/queries/journal';
 import { getUserSubscriptionPlan } from '@/queries/stripe';
 
@@ -43,15 +44,21 @@ const page = async () => {
 
         {hasTodayUsersJournals && (
           <div className='space-y-4'>
-            {usersTodayJornals.map((journal, index) => (
-              <Fragment key={journal.id}>
-                <JournalCard
-                  dense={usersTodayJornals.length > 1}
-                  journal={journal}
-                />
-                {index !== usersTodayJornals.length - 1 && <Separator />}
-              </Fragment>
-            ))}
+            {usersTodayJornals.map((journal, index) => {
+              const badgeColor = moods.find(
+                (mood) => mood.name === journal.mood.toLowerCase(),
+              )?.color;
+              return (
+                <Fragment key={journal.id}>
+                  <JournalCard
+                    badgeColor={badgeColor!}
+                    dense={usersTodayJornals.length > 1}
+                    journal={journal}
+                  />
+                  {index !== usersTodayJornals.length - 1 && <Separator />}
+                </Fragment>
+              );
+            })}
           </div>
         )}
 

@@ -10,9 +10,15 @@ type JournalCardProps = {
   title?: string;
   journal: Journal;
   dense?: boolean;
+  badgeColor: string;
 };
 
-const JournalCard = ({ title, journal, dense = false }: JournalCardProps) => {
+const JournalCard = ({
+  title,
+  journal,
+  badgeColor,
+  dense = false,
+}: JournalCardProps) => {
   return (
     <div>
       {title && (
@@ -27,7 +33,9 @@ const JournalCard = ({ title, journal, dense = false }: JournalCardProps) => {
       )}
       <div className={cn('flex items-center justify-between')}>
         <p className='text-xs'>{formatDate(journal.createdAt)}</p>
-        <Badge variant='outline'>{journal.mood}</Badge>
+        <Badge style={{ backgroundColor: badgeColor }} className='text-black'>
+          {journal.mood}
+        </Badge>
       </div>
       <ListenButton journal={journal} />
     </div>
