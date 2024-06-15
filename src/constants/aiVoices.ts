@@ -16,7 +16,7 @@ export const aiVoices: VoiceType[] = [
   },
   {
     name: 'fable',
-    isFreePlan: true,
+    isFreePlan: false,
   },
   {
     name: 'onyx',

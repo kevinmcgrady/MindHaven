@@ -1,7 +1,7 @@
 import { User } from '@prisma/client';
 import Image from 'next/image';
 
-import { formatDate } from '@/lib/formatDate';
+import { formatDate } from '@/utils/formatDate';
 
 type UserProfileHeaderProps = {
   user: User;

@@ -1,8 +1,8 @@
 'use server';
 
 import { PLANS } from '@/config/plans';
-import { absoluteUrl } from '@/lib/absoluteUrl';
 import { stripe } from '@/lib/stripe';
+import { absoluteUrl } from '@/utils/absoluteUrl';
 
 import { getUserDetails } from './auth';
 

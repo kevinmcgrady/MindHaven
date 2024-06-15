@@ -17,7 +17,7 @@ const page = async () => {
   const hasTodayUsersJournals =
     usersTodayJornals && usersTodayJornals.length > 0;
 
-  const hasUserReachedQuota =
+  const isUserWithinQuota =
     subscriptionPlan?.isSubscribed &&
     usersTodayJornals &&
     usersTodayJornals.length < PLANS.pro.features.noOfEntriesPerDay;
@@ -53,9 +53,12 @@ const page = async () => {
           </div>
         )}
 
-        {hasUserReachedQuota && (
+        {isUserWithinQuota && hasTodayUsersJournals && (
           <div className='mt-4'>
-            <CreateJornalDialog isProPlan={subscriptionPlan.isSubscribed} />
+            <CreateJornalDialog
+              buttonText='Create another journal'
+              isProPlan={subscriptionPlan.isSubscribed}
+            />
           </div>
         )}
       </CardSection>

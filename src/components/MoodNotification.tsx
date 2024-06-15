@@ -1,14 +1,16 @@
 import CardSection from './layout/CardSection';
 
-const MoodNotification = () => {
+type MoodNotificationProps = {
+  message: string;
+};
+
+const MoodNotification = ({ message }: MoodNotificationProps) => {
   return (
     <CardSection className='flex gap-4'>
       <p className='text-5xl'>😀</p>
       <div>
-        <h2 className='font-semibold mb-2'>Your mood is good</h2>
-        <p className='text-sm font-light'>
-          We are pleased you are having a good day!
-        </p>
+        <h2 className='font-semibold mb-2'>{message}</h2>
+        <p className='text-sm font-light'>This is based from your journals</p>
       </div>
     </CardSection>
   );

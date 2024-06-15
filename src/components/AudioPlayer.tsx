@@ -3,7 +3,7 @@
 import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
-import { formatTime } from '@/lib/formatTime';
+import { formatTime } from '@/utils/formatTime';
 
 import { Button } from './ui/button';
 import { Progress } from './ui/progress';

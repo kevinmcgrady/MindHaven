@@ -3,7 +3,7 @@
 import { Journal } from '@prisma/client';
 import { Play } from 'lucide-react';
 
-import { formatDate } from '@/lib/formatDate';
+import { formatDate } from '@/utils/formatDate';
 
 import { AudioPlayer } from './AudioPlayer';
 import { Badge } from './ui/badge';

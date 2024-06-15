@@ -1,7 +1,7 @@
 import { urls } from '@/constants/urls';
-import { formatDate } from '@/lib/formatDate';
 import { getAllJournalCount, getLastJournalDate } from '@/queries/journal';
 import { getUserSubscriptionPlan } from '@/queries/stripe';
+import { formatDate } from '@/utils/formatDate';
 
 import DashboardCard from './DashboardCard';
 

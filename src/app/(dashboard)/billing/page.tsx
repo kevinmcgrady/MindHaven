@@ -2,8 +2,8 @@ import CreateStripeSessionButton from '@/components/CreateStripeSessionButton';
 import CardSection from '@/components/layout/CardSection';
 import PageHeader from '@/components/site/PageHeader';
 import { PLANS } from '@/config/plans';
-import { formatDate } from '@/lib/formatDate';
 import { getUserSubscriptionPlan } from '@/queries/stripe';
+import { formatDate } from '@/utils/formatDate';
 
 const page = async () => {
   const subscriptionPlan = await getUserSubscriptionPlan();

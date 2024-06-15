@@ -36,9 +36,13 @@ import { Textarea } from '../ui/textarea';
 
 type CreateJornalDialogProps = {
   isProPlan: boolean;
+  buttonText?: string;
 };
 
-const CreateJornalDialog = ({ isProPlan }: CreateJornalDialogProps) => {
+const CreateJornalDialog = ({
+  isProPlan,
+  buttonText,
+}: CreateJornalDialogProps) => {
   const [selectedVoice, setSelectedVoice] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const router = useRouter();
@@ -93,7 +97,7 @@ const CreateJornalDialog = ({ isProPlan }: CreateJornalDialogProps) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button>Create a new jornal</Button>
+        <Button>{buttonText ? buttonText : 'Create a new jornal'}</Button>
       </DialogTrigger>
       <DialogContent>
         <Form {...form}>

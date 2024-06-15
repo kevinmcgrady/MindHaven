@@ -1,7 +1,7 @@
 import { Journal } from '@prisma/client';
 
-import { formatDate } from '@/lib/formatDate';
 import { cn } from '@/lib/utils';
+import { formatDate } from '@/utils/formatDate';
 
 import ListenButton from '../ListenButton';
 import { Badge } from '../ui/badge';

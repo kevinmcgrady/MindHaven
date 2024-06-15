@@ -8,7 +8,7 @@ export const PLANS = {
     name: PlanType.FREE,
     slug: PlanType.FREE.toLocaleLowerCase(),
     features: {
-      voices: 3,
+      voices: 2,
       noOfEntriesPerDay: 1,
       lengthOfJournals: 2000,
     },
