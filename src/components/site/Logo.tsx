@@ -7,8 +7,8 @@ const Logo = () => {
       <Image
         src='/images/blob.png'
         alt='MindHaven'
-        width={50}
-        height={50}
+        width={40}
+        height={40}
         className='w-fit h-fit aspect-square relative'
       />
       <Link href='/'>

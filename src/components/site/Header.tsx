@@ -1,4 +1,5 @@
 import { SignedIn, SignedOut } from '@clerk/nextjs';
+import { Bell, Search } from 'lucide-react';
 import Link from 'next/link';
 
 import { urls } from '@/constants/urls';
@@ -20,10 +21,7 @@ export const Header = async () => {
         userLastName={user?.lastName}
       />
       <SignedIn>
-        <UserButton
-          userFirstName={user?.firstName!}
-          userLastName={user?.lastName!}
-        />
+        <UserButton />
       </SignedIn>
       <SignedOut>
         <Link href={urls.auth.signIn}>
