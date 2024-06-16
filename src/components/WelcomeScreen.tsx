@@ -1,7 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Loader2 } from 'lucide-react';
+import { Loader2, Plus } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
@@ -10,6 +10,7 @@ import { z } from 'zod';
 import { updateUsersProfile } from '@/queries/auth';
 
 import CardSection from './layout/CardSection';
+import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Form, FormControl, FormField, FormItem, FormMessage } from './ui/form';
 import { Input } from './ui/input';
@@ -17,14 +18,32 @@ import { Label } from './ui/label';
 import { Textarea } from './ui/textarea';
 
 export const WelcomeScreen = () => {
-  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [tags, setTags] = useState<string[]>([]);
+
+  const router = useRouter();
 
   const formSchema = z.object({
-    country: z.string().min(2).max(50),
-    bio: z.string().min(2).max(500),
-    mentalHealthGoal: z.string().min(2).max(500),
-    username: z.string().min(2).max(20),
+    country: z
+      .string()
+      .min(2, 'Your country must be 2 chars or more')
+      .max(50, 'Your country must be less than 50 chars'),
+    bio: z
+      .string()
+      .min(2, 'Your bio must be 2 chars or more')
+      .max(500, 'Your bio must be less than 500 chars'),
+    mentalHealthGoal: z
+      .string()
+      .min(2, 'Your goal must be more than 2 chars')
+      .max(500, 'Your goal must be less than 500 chars'),
+    username: z
+      .string()
+      .min(2, 'Your username must be more than 2 chars')
+      .max(20, 'Your country must be less than 20 chars'),
+    tags: z
+      .string()
+      .optional()
+      .refine(() => tags.length > 0, { message: 'You must enter a tag' }),
   });
 
   const form = useForm<z.infer<typeof formSchema>>({
@@ -34,6 +53,7 @@ export const WelcomeScreen = () => {
       bio: '',
       mentalHealthGoal: '',
       username: '',
+      tags: '',
     },
   });
 
@@ -45,6 +65,7 @@ export const WelcomeScreen = () => {
         country: values.country,
         mentalHealthGoal: values.mentalHealthGoal,
         username: values.username,
+        tags: tags,
       });
       router.refresh();
     } catch (error) {
@@ -54,9 +75,14 @@ export const WelcomeScreen = () => {
     }
   };
 
+  const handleAddTag = (tag: string | undefined) => {
+    if (!tag) return;
+    setTags((tags: any) => [...tags, tag.toUpperCase()]);
+  };
+
   return (
     <CardSection noSpacing>
-      <h1 className='font-semibold mb-2 text-2xl'>Welcome to MindHaven 👋</h1>
+      <h1 className='font-semibold mb-2 text-3xl'>Welcome to MindHaven 👋</h1>
       <p className='mb-8 font-light text-muted-foreground'>
         We are glad you have decided to track <strong>your</strong> mental
         health journey with us!
@@ -94,6 +120,51 @@ export const WelcomeScreen = () => {
                   />
                 </FormControl>
                 <FormMessage />
+              </FormItem>
+            )}
+          />
+
+          <FormField
+            control={form.control}
+            name='tags'
+            render={({ field }) => (
+              <FormItem>
+                <Label className='text-sm font-semibold'>Tags</Label>
+                <FormControl>
+                  <Input
+                    placeholder='social anxiety'
+                    className='mt-2'
+                    type='text'
+                    {...field}
+                  />
+                </FormControl>
+
+                <FormMessage />
+
+                <Button
+                  type='button'
+                  size='icon'
+                  className='!mt-4'
+                  onClick={() => {
+                    handleAddTag(field.value);
+                    form.resetField('tags');
+                  }}
+                >
+                  <Plus size={15} />
+                </Button>
+                {tags.length > 0 && (
+                  <div className='flex gap-2 pt-4'>
+                    {tags.map((tag) => (
+                      <Badge
+                        key={tag}
+                        className='text-sm rounded-sm'
+                        variant='outline'
+                      >
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
               </FormItem>
             )}
           />
