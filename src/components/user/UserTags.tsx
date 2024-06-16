@@ -2,20 +2,20 @@ import { Fragment } from 'react';
 
 import { Button } from '../ui/button';
 
-const UserTags = () => {
+type UserTagsProps = {
+  tags: string[];
+};
+
+const UserTags = ({ tags = [] }: UserTagsProps) => {
   return (
     <Fragment>
       <h3 className='font-semibold text-lg mb-4'>Tags</h3>
       <div className='space-x-2'>
-        <Button size='sm' variant='outline'>
-          social anxiety
-        </Button>
-        <Button size='sm' variant='outline'>
-          anxiety
-        </Button>
-        <Button size='sm' variant='outline'>
-          autism
-        </Button>
+        {tags.map((tag) => (
+          <Button key={tag} size='sm' variant='outline'>
+            {tag}
+          </Button>
+        ))}
       </div>
     </Fragment>
   );

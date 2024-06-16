@@ -26,7 +26,7 @@ const page = async () => {
       </CardSection>
 
       <CardSection>
-        <UserTags />
+        <UserTags tags={user.tags} />
       </CardSection>
 
       <CardSection>
