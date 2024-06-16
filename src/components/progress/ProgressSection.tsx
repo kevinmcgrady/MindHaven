@@ -11,6 +11,7 @@ import PreviousJournals from '../journal/PreviousJournals';
 import CardSection from '../layout/CardSection';
 import EmptyState from '../site/EmptyState';
 import { Separator } from '../ui/separator';
+import { useToast } from '../ui/use-toast';
 import Chart from './components/Chart';
 import MonthYearDropdown from './components/MonthYearDropdown';
 
@@ -25,6 +26,7 @@ const ProgressSection = ({
   defaultMonth,
   defaultYear,
 }: ProgressSectionProps) => {
+  const { toast } = useToast();
   const [selectedMonth, setSelectedMonth] = useState<string>(defaultMonth);
   const [selectedYear, setSelectedYear] = useState<string>(defaultYear);
   const [selectedJournals, setSelectedJournals] =
@@ -40,7 +42,11 @@ const ProgressSection = ({
       const journals = await getJournalsByMonthAndYear(month, selectedYear);
       setSelectedJournals(journals || []);
     } catch (error) {
-      console.log(error);
+      toast({
+        title: 'Oops',
+        description: 'There was an error getting your journals',
+        variant: 'destructive',
+      });
     }
   };
 
@@ -50,7 +56,11 @@ const ProgressSection = ({
       const journals = await getJournalsByMonthAndYear(selectedMonth, year);
       setSelectedJournals(journals || []);
     } catch (error) {
-      console.log(error);
+      toast({
+        title: 'Oops',
+        description: 'There was an error getting your journals',
+        variant: 'destructive',
+      });
     }
   };
 

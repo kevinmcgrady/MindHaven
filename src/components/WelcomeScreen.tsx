@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
+import { useToast } from '@/components/ui/use-toast';
 import { updateUsersProfile } from '@/queries/auth';
 
 import CardSection from './layout/CardSection';
@@ -22,6 +23,7 @@ export const WelcomeScreen = () => {
   const [tags, setTags] = useState<string[]>([]);
 
   const router = useRouter();
+  const { toast } = useToast();
 
   const formSchema = z.object({
     country: z
@@ -69,7 +71,12 @@ export const WelcomeScreen = () => {
       });
       router.refresh();
     } catch (error) {
-      console.log(error);
+      toast({
+        title: 'Oops',
+        description:
+          'There was an error updating your profile information, please try again.',
+        variant: 'destructive',
+      });
     } finally {
       setIsSubmitting(false);
     }

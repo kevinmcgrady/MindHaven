@@ -34,6 +34,7 @@ import {
   SelectValue,
 } from '../ui/select';
 import { Textarea } from '../ui/textarea';
+import { useToast } from '../ui/use-toast';
 
 type CreateJornalDialogProps = {
   isProPlan: boolean;
@@ -47,6 +48,7 @@ const CreateJornalDialog = ({
   const [selectedVoice, setSelectedVoice] = useState<string | null>(null);
   const [isGenerating, setIsGenerating] = useState<boolean>(false);
   const router = useRouter();
+  const { toast } = useToast();
 
   const journalLength = isProPlan
     ? PLANS.pro.features.lengthOfJournals
@@ -89,7 +91,12 @@ const CreateJornalDialog = ({
 
       router.push(urls.dashboard.journal);
     } catch (error) {
-      console.log(error);
+      toast({
+        title: 'Oops',
+        description:
+          'There was an issue creating your journal, please try again',
+        variant: 'destructive',
+      });
     } finally {
       setIsGenerating(false);
     }

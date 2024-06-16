@@ -23,6 +23,7 @@ import {
 } from '../ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
 import { Separator } from '../ui/separator';
+import { useToast } from '../ui/use-toast';
 import JournalCard from './JournalCard';
 
 type PreviousJournalsProps = {
@@ -40,7 +41,7 @@ const PreviousJournals = ({
     useState<SelectedJournals>(null);
   const [isPopoverOpen, setIsPopoverOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const { toast } = useToast();
   const journalDates: string[] = journals.map((journal) =>
     format(journal.createdAt, 'yyyy-MM-dd'),
   );
@@ -63,7 +64,11 @@ const PreviousJournals = ({
       const journal = await getJournalByDate(entryDate);
       setSelectedJournals(journal);
     } catch (error) {
-      console.log(error);
+      toast({
+        title: 'Oops',
+        description: 'There was an issue getting your journals',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }

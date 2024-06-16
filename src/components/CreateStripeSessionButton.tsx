@@ -7,6 +7,7 @@ import { useState } from 'react';
 import { createStripeCheckoutSession } from '@/queries/stripe';
 
 import { Button } from './ui/button';
+import { useToast } from './ui/use-toast';
 
 type CreateStripeSessionButtonProps = {
   buttonText: string;
@@ -20,6 +21,7 @@ const CreateStripeSessionButton = ({
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
 
   const router = useRouter();
+  const { toast } = useToast();
 
   const handleCreateStripeSession = async () => {
     try {
@@ -31,7 +33,11 @@ const CreateStripeSessionButton = ({
       }
       throw new Error();
     } catch (error) {
-      console.log(error);
+      toast({
+        title: 'Oops',
+        description: 'There was an issue, please try again',
+        variant: 'destructive',
+      });
     } finally {
       setIsSubmitting(false);
     }
