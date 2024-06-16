@@ -136,10 +136,7 @@ const CreateJornalDialog = ({
                     </FormControl>
                     <SelectContent>
                       {moods.map((mood) => (
-                        <SelectItem
-                          key={mood.name}
-                          value={mood.name.toUpperCase()}
-                        >
+                        <SelectItem key={mood.name} value={mood.name}>
                           {mood.name}
                         </SelectItem>
                       ))}

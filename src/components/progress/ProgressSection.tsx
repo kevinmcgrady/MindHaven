@@ -6,13 +6,13 @@ import { Fragment, useState } from 'react';
 import { cn } from '@/lib/utils';
 import { getJournalsByMonthAndYear } from '@/queries/journal';
 
+import { mapChartData } from '../../utils/mapChartData';
 import PreviousJournals from '../journal/PreviousJournals';
 import CardSection from '../layout/CardSection';
 import EmptyState from '../site/EmptyState';
 import { Separator } from '../ui/separator';
 import Chart from './components/Chart';
 import MonthYearDropdown from './components/MonthYearDropdown';
-import { mapChartData } from './utils/mapChartData';
 
 type ProgressSectionProps = {
   defaultJournals: Journal[];
