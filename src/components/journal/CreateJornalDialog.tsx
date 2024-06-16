@@ -214,7 +214,7 @@ const CreateJornalDialog = ({
 
             <Button>
               {isGenerating ? (
-                <Loader2 size={20} className='animate-spin' />
+                <Loader2 size={15} className='animate-spin' />
               ) : (
                 'Generate'
               )}

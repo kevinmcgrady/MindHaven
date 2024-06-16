@@ -134,7 +134,7 @@ const PreviousJournals = ({
       <section className='mt-4'>
         {isLoading && (
           <div className='mt-4 flex items-center flex-col'>
-            <Loader2 size={30} color='#F77334' className='animate-spin' />
+            <Loader2 size={30} className='animate-spin' />
           </div>
         )}
 
