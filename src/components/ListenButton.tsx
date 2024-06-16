@@ -12,9 +12,10 @@ import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 
 type ListenButtonProps = {
   journal: Journal;
+  badgeColor: string;
 };
 
-const ListenButton = ({ journal }: ListenButtonProps) => {
+const ListenButton = ({ journal, badgeColor }: ListenButtonProps) => {
   return (
     <div className='mt-4'>
       <Dialog>
@@ -32,7 +33,13 @@ const ListenButton = ({ journal }: ListenButtonProps) => {
           <AudioPlayer audioUrl={journal.audioUrl} />
           <div className='flex items-center justify-between'>
             <p className='text-xs'>{formatDate(journal.createdAt)}</p>
-            <Badge variant='outline'>{journal.mood}</Badge>
+            <Badge
+              variant='outline'
+              className='p-2 rounded-md'
+              style={{ backgroundColor: badgeColor }}
+            >
+              {journal.mood}
+            </Badge>
           </div>
         </DialogContent>
       </Dialog>

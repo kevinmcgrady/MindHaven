@@ -23,7 +23,7 @@ export default async function RootLayout({
         <section className='flex-1 w-full md:ml-4'>{children}</section>
         <RightSidebar />
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </main>
   );
 }

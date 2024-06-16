@@ -2,7 +2,6 @@
 
 import { User } from '@prisma/client';
 import { Loader2, Search as SearchIcon } from 'lucide-react';
-import Image from 'next/image';
 import { useEffect, useState } from 'react';
 
 import { useDebounce } from '@/hooks/useDebounce';
@@ -18,6 +17,7 @@ import {
   DialogTrigger,
 } from '../ui/dialog';
 import { Input } from '../ui/input';
+import UserSearchCard from '../user/UserSearchCard';
 
 type SearchBarResults =
   | Pick<User, 'firstName' | 'lastName' | 'country' | 'imageUrl' | 'username'>[]
@@ -33,6 +33,7 @@ const SearchBar = () => {
   const hasResults = searchResults && searchResults.length > 0;
 
   const handleGetResults = async (query: string) => {
+    setSearchResults([]);
     try {
       setIsLoading(true);
       const results = await searchUsers(query);
@@ -46,7 +47,7 @@ const SearchBar = () => {
 
   useEffect(() => {
     if (searchQuery || query.length < 0) handleGetResults(searchQuery);
-  }, [searchQuery, query.length]);
+  }, [searchQuery]);
 
   return (
     <CardSection className='mb-4' noSpacing>
@@ -78,23 +79,14 @@ const SearchBar = () => {
           {hasResults && !isLoading && (
             <div className='flex flex-col gap-4'>
               {searchResults.map((user) => (
-                <div className='flex gap-2' key={user.username}>
-                  <Image
-                    src={user.imageUrl}
-                    alt={user.firstName}
-                    width={50}
-                    height={50}
-                    className='aspect-square rounded-lg'
-                  />
-                  <div>
-                    <p className='text-md font-semibold'>
-                      {user.firstName} {user.lastName}, {user.country}
-                    </p>
-                    <p className='text-sm text-muted-foreground'>
-                      @{user.username}
-                    </p>
-                  </div>
-                </div>
+                <UserSearchCard
+                  key={user.username}
+                  country={user.country!}
+                  firstName={user.firstName}
+                  imageUrl={user.imageUrl}
+                  lastName={user.lastName}
+                  username={user.username!}
+                />
               ))}
             </div>
           )}

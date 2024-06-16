@@ -33,11 +33,14 @@ const JournalCard = ({
       )}
       <div className={cn('flex items-center justify-between')}>
         <p className='text-xs'>{formatDate(journal.createdAt)}</p>
-        <Badge style={{ backgroundColor: badgeColor }} className='text-black'>
+        <Badge
+          style={{ backgroundColor: badgeColor }}
+          className='p-2 rounded-md text-black'
+        >
           {journal.mood}
         </Badge>
       </div>
-      <ListenButton journal={journal} />
+      <ListenButton badgeColor={badgeColor} journal={journal} />
     </div>
   );
 };

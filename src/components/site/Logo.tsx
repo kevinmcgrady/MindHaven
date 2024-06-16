@@ -1,6 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { urls } from '@/constants/urls';
+
 const Logo = () => {
   return (
     <div className='flex gap-2 items-center'>
@@ -11,7 +13,7 @@ const Logo = () => {
         height={40}
         className='w-fit h-fit aspect-square relative'
       />
-      <Link href='/'>
+      <Link href={urls.home}>
         <h1 className='font-extrabold text-lg'>MindHaven</h1>
       </Link>
     </div>

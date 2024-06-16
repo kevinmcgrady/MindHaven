@@ -15,7 +15,7 @@ export default function RootLayout({
       <section className='flex flex-1'>
         <section className='flex-1 w-full'>{children}</section>
       </section>
-      <Footer />
+      {/* <Footer /> */}
       <Toaster />
     </main>
   );

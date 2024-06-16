@@ -8,6 +8,7 @@ export const urls = {
     root: '/dashboard',
     journal: '/journal',
     profile: '/profile',
+    externalUserProfile: (username: string) => `/profile/${username}`,
     tracking: '/tracking',
     billing: '/billing',
   },
