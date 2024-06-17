@@ -5,6 +5,7 @@ import CardSection from '@/components/layout/CardSection';
 import UserBadges from '@/components/user/UserBadges';
 import UserProfileHeader from '@/components/user/UserProfileHeader';
 import UserTags from '@/components/user/UserTags';
+import { getUserDetails } from '@/queries/auth';
 import { getUserByUsername } from '@/queries/user';
 
 type PageProps = {
@@ -14,12 +15,16 @@ type PageProps = {
 };
 const page = async ({ params }: PageProps) => {
   const user = await getUserByUsername(params.username);
+  const currentUser = await getUserDetails();
 
   if (!user) return notFound();
+
+  const isCurrentUser = user.id === currentUser?.id;
+
   return (
     <Fragment>
       <CardSection noSpacing>
-        <UserProfileHeader user={user} />
+        <UserProfileHeader user={user} isCurrentUser={isCurrentUser} />
       </CardSection>
 
       <CardSection>

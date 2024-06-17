@@ -25,24 +25,28 @@ enum Voice {
 }
 
 model User {
-  id                     String    @id @default(uuid())
-  firstName              String
-  lastName               String
-  imageUrl               String    @db.Text
-  username               String?   @unique
-  emailAddress           String    @unique
-  createdAt              DateTime  @default(now())
-  updatedAt              DateTime  @updatedAt
-  bio                    String?
-  mentalHealthGoal       String?
-  country                String?
-  hasCompletedProfile    Boolean   @default(false)
-  journal                Journal[]
-  tags                   String[]  @default([])
+  id                  String    @id @default(uuid())
+  firstName           String
+  lastName            String
+  imageUrl            String    @db.Text
+  username            String?   @unique
+  emailAddress        String    @unique
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+  bio                 String?
+  mentalHealthGoal    String?
+  country             String?
+  hasCompletedProfile Boolean   @default(false)
+  journal             Journal[]
+  tags                String[]  @default([])
+
   stripeCustomerId       String?   @unique @map(name: "stripe_customer_id")
   stripeSubscriptionId   String?   @unique @map(name: "stripe_subscription_id")
   stripePriceId          String?   @map(name: "stripe_price_id")
   stripeCurrentPeriodEnd DateTime? @map(name: "stripe_current_period_end")
+
+  followers Follows[] @relation("following")
+  following Follows[] @relation("follower")
 }
 
 model Journal {
@@ -58,4 +62,13 @@ model Journal {
   User           User?    @relation(fields: [userId], references: [id])
   userId         String?
   audioUrl       String
+}
+
+model Follows {
+  follower    User   @relation("follower", fields: [followerId], references: [id])
+  followerId  String
+  following   User   @relation("following", fields: [followingId], references: [id])
+  followingId String
+
+  @@id([followerId, followingId])
 }

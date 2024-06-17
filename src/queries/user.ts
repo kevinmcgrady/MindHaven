@@ -17,3 +17,44 @@ export const getUserByUsername = async (username: string) => {
 
   return user;
 };
+
+export const isUserFollowing = async (targetUserId: string) => {
+  const user = await currentUser();
+
+  if (!user) return;
+
+  const isFollowingAlready = await db.follows.findFirst({
+    where: {
+      followerId: user.id,
+      followingId: targetUserId,
+    },
+  });
+
+  return isFollowingAlready;
+};
+
+export const followUnfollowUser = async (targetUserId: string) => {
+  const user = await currentUser();
+
+  if (!user) return;
+
+  const isFollowingAlready = await isUserFollowing(targetUserId);
+
+  if (isFollowingAlready) {
+    return await db.follows.delete({
+      where: {
+        followerId_followingId: {
+          followerId: user.id,
+          followingId: targetUserId,
+        },
+      },
+    });
+  } else {
+    await db.follows.create({
+      data: {
+        followerId: user.id,
+        followingId: targetUserId,
+      },
+    });
+  }
+};

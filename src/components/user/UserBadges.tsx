@@ -5,7 +5,7 @@ const UserBadges = () => {
   return (
     <Fragment>
       <h3 className='font-semibold text-lg mb-4'>Badges</h3>
-      <div className='mt-4 grid grid-cols-4 gap-8'>
+      {/* <div className='mt-4 grid grid-cols-4 gap-8'>
         <Image
           src='/images/badges/badge.png'
           alt='badge'
@@ -34,7 +34,7 @@ const UserBadges = () => {
           height={100}
           className='aspect-square'
         />
-      </div>
+      </div> */}
     </Fragment>
   );
 };
