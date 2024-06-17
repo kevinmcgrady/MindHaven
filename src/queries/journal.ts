@@ -34,13 +34,12 @@ export const createJornal = async (jornal: {
   });
 };
 
-export const getJournalByDate = async (date: Date) => {
+export const getJournalByDate = async (date: string) => {
   const user = await currentUser();
   console.log(date);
   if (!user) return;
 
-  const selectedDate =
-    format(date, 'yyyy-MM-dd').split('T')[0] + 'T00:00:00.000Z';
+  const selectedDate = date.split('T')[0] + 'T00:00:00.000Z';
 
   console.log(selectedDate);
 
