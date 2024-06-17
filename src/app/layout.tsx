@@ -2,13 +2,13 @@ import './globals.css';
 
 import { ClerkProvider } from '@clerk/nextjs';
 import { Analytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import type React from 'react';
 
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
-import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const maprope = Manrope({ subsets: ['latin'] });
 
