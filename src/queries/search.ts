@@ -12,8 +12,7 @@ export const searchUsers = async (query: string) => {
   const results = await db.user.findMany({
     where: {
       OR: [
-        { firstName: { contains: query } },
-        { lastName: { contains: query } },
+        { username: { contains: query } },
         { country: { contains: query } },
         {
           tags: {

@@ -17,7 +17,9 @@ import {
   DialogTrigger,
 } from '../ui/dialog';
 import { Input } from '../ui/input';
+import { useToast } from '../ui/use-toast';
 import UserSearchCard from '../user/UserSearchCard';
+import EmptyState from './EmptyState';
 
 type SearchBarResults =
   | Pick<User, 'firstName' | 'lastName' | 'country' | 'imageUrl' | 'username'>[]
@@ -27,26 +29,30 @@ const SearchBar = () => {
   const [query, setQuery] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [searchResults, setSearchResults] = useState<SearchBarResults>([]);
-
+  const { toast } = useToast();
   const searchQuery = useDebounce(query, 800);
 
   const hasResults = searchResults && searchResults.length > 0;
 
   const handleGetResults = async (query: string) => {
-    setSearchResults([]);
     try {
       setIsLoading(true);
       const results = await searchUsers(query);
       setSearchResults(results);
     } catch (error) {
-      console.log(error);
+      toast({
+        title: 'Oops',
+        description: 'There was an issue, please try again',
+        variant: 'destructive',
+      });
     } finally {
       setIsLoading(false);
     }
   };
 
   useEffect(() => {
-    if (searchQuery || query.length < 0) handleGetResults(searchQuery);
+    if (searchQuery.length === 0) setSearchResults([]);
+    if (searchQuery || searchQuery.length < 0) handleGetResults(searchQuery);
   }, [searchQuery]);
 
   return (
@@ -62,11 +68,12 @@ const SearchBar = () => {
           <DialogHeader>
             <DialogTitle>Find Friends</DialogTitle>
             <DialogDescription>
-              Search for friends by their name, location, or tags
+              Search for friends by their username, location, or tags
             </DialogDescription>
           </DialogHeader>
           <div>
             <Input
+              value={query}
               onChange={(event) => setQuery(event.target.value)}
               placeholder='Scotland'
             />
@@ -74,6 +81,10 @@ const SearchBar = () => {
 
           {isLoading && (
             <Loader2 size={20} className='animate-spin mx-auto mt-4' />
+          )}
+
+          {!hasResults && !isLoading && searchQuery.length !== 0 && (
+            <EmptyState description='No results found' />
           )}
 
           {hasResults && !isLoading && (

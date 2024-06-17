@@ -21,7 +21,10 @@ const UserSearchCard = ({
   username,
 }: UserSearchCardProps) => {
   return (
-    <Link href={urls.dashboard.externalUserProfile(username)}>
+    <Link
+      className='hover:bg-gray-100 p-4 rounded-lg'
+      href={urls.dashboard.externalUserProfile(username)}
+    >
       <DialogClose className='flex gap-2 text-start'>
         <Image
           src={imageUrl}
