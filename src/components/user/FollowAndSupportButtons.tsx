@@ -18,7 +18,9 @@ const FollowAndSupportButtons = ({
   targetUserId,
   isUserFollowing,
 }: FollowAndSupportButtonsProps) => {
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  const [isSupporting, setIsSupporting] = useState<boolean>(false);
+
   const router = useRouter();
   const { toast } = useToast();
 
@@ -26,7 +28,7 @@ const FollowAndSupportButtons = ({
 
   const handleFollow = async () => {
     try {
-      setIsLoading(true);
+      setIsFollowing(true);
       await followUnfollowUser(targetUserId);
       router.refresh();
     } catch (error) {
@@ -36,21 +38,39 @@ const FollowAndSupportButtons = ({
         variant: 'destructive',
       });
     } finally {
-      setIsLoading(false);
+      setIsFollowing(false);
+    }
+  };
+
+  const handleShowSupport = () => {
+    try {
+      setIsSupporting(true);
+    } catch (error) {
+      toast({
+        title: 'Oops',
+        description: 'There was a problem, please try again',
+        variant: 'destructive',
+      });
+    } finally {
+      setIsSupporting(false);
     }
   };
 
   return (
     <div className='flex justify-center gap-2 mt-4'>
       <Button onClick={handleFollow} size='sm'>
-        {isLoading ? (
+        {isFollowing ? (
           <Loader2 size={15} className='animate-spin' />
         ) : (
           followButtonText
         )}
       </Button>
-      <Button size='sm' variant='outline'>
-        Show Support 🙏
+      <Button onClick={handleShowSupport} size='sm' variant='outline'>
+        {isSupporting ? (
+          <Loader2 size={15} className='animate-spin' />
+        ) : (
+          'Show Support 🙏'
+        )}
       </Button>
     </div>
   );

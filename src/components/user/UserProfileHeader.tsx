@@ -57,7 +57,10 @@ const UserProfileHeader = async ({
             Following: <strong>{noOfFollowing}</strong>
           </p>
           <p>
-            Support: <strong>0</strong>
+            Support: ❤️
+            <strong>
+              <sup>0</sup>
+            </strong>
           </p>
         </div>
 
