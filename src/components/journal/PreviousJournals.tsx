@@ -61,6 +61,7 @@ const PreviousJournals = ({
       if (!entryDate) return;
       setSelectedJournals(null);
       setIsLoading(true);
+      console.log(entryDate);
       const journal = await getJournalByDate(new Date(entryDate));
       setSelectedJournals(journal);
     } catch (error) {
