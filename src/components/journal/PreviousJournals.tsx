@@ -61,9 +61,7 @@ const PreviousJournals = ({
       if (!entryDate) return;
       setSelectedJournals(null);
       setIsLoading(true);
-      const journal = await getJournalByDate(
-        format(entryDate, 'yyyy-MM-dd').split('T')[0] + 'T00:00:00.000Z',
-      );
+      const journal = await getJournalByDate(new Date(entryDate));
       setSelectedJournals(journal);
     } catch (error) {
       toast({

@@ -34,18 +34,19 @@ export const createJornal = async (jornal: {
   });
 };
 
-export const getJournalByDate = async (date: string) => {
+export const getJournalByDate = async (date: Date) => {
   const user = await currentUser();
 
   if (!user) return;
 
-  console.log(date);
+  const selectedDate =
+    format(date, 'yyyy-MM-dd').split('T')[0] + 'T00:00:00.000Z';
 
   const journals = await db.journal.findMany({
     where: {
       userId: user.id,
       createdAt: {
-        equals: date,
+        equals: selectedDate,
       },
     },
   });
