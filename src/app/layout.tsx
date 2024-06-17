@@ -8,6 +8,7 @@ import type React from 'react';
 
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const maprope = Manrope({ subsets: ['latin'] });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
           {children}
           <Toaster />
           <Analytics />
+          <SpeedInsights />
         </body>
       </html>
     </ClerkProvider>
