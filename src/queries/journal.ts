@@ -42,6 +42,8 @@ export const getJournalByDate = async (date: Date) => {
   const selectedDate =
     format(date, 'yyyy-MM-dd').split('T')[0] + 'T00:00:00.000Z';
 
+  console.log(selectedDate);
+
   const journals = await db.journal.findMany({
     where: {
       userId: user.id,

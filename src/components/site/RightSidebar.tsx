@@ -19,7 +19,7 @@ export const RightSidebar = async () => {
         <Fragment>
           <CardSection noSpacing>
             <h2 className='font-semibold text-lg mb-4'>Friends Activity</h2>
-            <div>
+            <div className='flex flex-col gap-4'>
               {following.map((follower) => {
                 const badgeColor = moods.find(
                   (mood) => mood.name === follower.avgMood,
