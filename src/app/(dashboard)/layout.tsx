@@ -15,7 +15,7 @@ export default async function RootLayout({
   await syncUser();
 
   return (
-    <main className='container py-4 min-h-screen flex flex-col'>
+    <main className='container px-0 md:px-8 py-4 min-h-screen flex flex-col'>
       <Header />
       <SearchBar />
       <section className='flex flex-1'>

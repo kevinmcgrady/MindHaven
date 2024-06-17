@@ -1,5 +1,6 @@
 import DashboardGrid from '@/components/dashboard/DashboardGrid';
 import DashboardHeader from '@/components/dashboard/DashboardHeader';
+import FriendsActivity from '@/components/dashboard/FriendsActivity';
 import CardSection from '@/components/layout/CardSection';
 import MoodNotification from '@/components/MoodNotification';
 import { getUserDetails } from '@/queries/auth';
@@ -13,6 +14,7 @@ const DashboardPage = async () => {
     <section>
       <DashboardHeader userFirstName={user?.firstName} />
       {userMood && <MoodNotification message={userMood.message} />}
+      <FriendsActivity className='xl:hidden' removePadding={false} />
       <CardSection>
         <DashboardGrid />
       </CardSection>

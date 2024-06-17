@@ -50,9 +50,15 @@ const UserProfileHeader = async ({
         </div>
 
         <div className='flex gap-2 justify-center mt-2 text-sm text-muted-foreground'>
-          <p>Followers: {noOfFollowers}</p>
-          <p>Following: {noOfFollowing}</p>
-          <p>Support: 0</p>
+          <p>
+            Followers: <strong>{noOfFollowers}</strong>
+          </p>
+          <p>
+            Following: <strong>{noOfFollowing}</strong>
+          </p>
+          <p>
+            Support: <strong>0</strong>
+          </p>
         </div>
 
         {!isCurrentUser && (

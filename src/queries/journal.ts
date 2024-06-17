@@ -36,7 +36,6 @@ export const createJornal = async (jornal: {
 
 export const getJournalByDate = async (date: Date | string) => {
   const user = await currentUser();
-  console.log(date);
   if (!user) return;
 
   const selectedDate =

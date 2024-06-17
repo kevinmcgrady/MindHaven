@@ -13,7 +13,7 @@ type MobileNavProps = {
 
 const MobileNav = ({ userFirstName, userLastName }: MobileNavProps) => {
   return (
-    <div className='md:hidden'>
+    <div className='xl:hidden'>
       <Sheet>
         <SheetTrigger asChild>
           <Menu className='cursor-pointer' />

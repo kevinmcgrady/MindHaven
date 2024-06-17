@@ -16,7 +16,6 @@ export const Nav = () => {
       <nav className='flex flex-col space-y-4'>
         {menuItems.map((item) => {
           const isActive = item.path === pathname;
-
           return (
             <Link key={item.label} href={item.path}>
               <Button

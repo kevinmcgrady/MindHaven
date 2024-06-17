@@ -1,6 +1,7 @@
 import './globals.css';
 
 import { ClerkProvider } from '@clerk/nextjs';
+import { Analytics } from '@vercel/analytics/react';
 import type { Metadata } from 'next';
 import { Manrope } from 'next/font/google';
 import type React from 'react';
@@ -29,6 +30,7 @@ export default function RootLayout({
         <body className={cn(maprope.className, 'bg-[#F8F9FC]')}>
           {children}
           <Toaster />
+          <Analytics />
         </body>
       </html>
     </ClerkProvider>
