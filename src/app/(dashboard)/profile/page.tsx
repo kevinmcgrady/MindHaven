@@ -17,7 +17,12 @@ const page = async () => {
   return (
     <Fragment>
       <CardSection noSpacing>
-        <UserProfileHeader user={user} isCurrentUser={true} />
+        <UserProfileHeader
+          user={user}
+          isCurrentUser={true}
+          noOfFollowers={user.followers.length}
+          noOfFollowing={user.following.length}
+        />
       </CardSection>
 
       <CardSection>

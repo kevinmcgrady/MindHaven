@@ -7,7 +7,7 @@ export const LeftSidebar = async () => {
   const subscriptionPlan = await getUserSubscriptionPlan();
 
   return (
-    <aside className='w-[310px] relative hidden md:flex md:flex-col rounded-xl '>
+    <aside className='w-[310px] relative hidden md:flex md:flex-col rounded-xl'>
       <Nav />
       {!subscriptionPlan?.isSubscribed && <PlanUpgrade />}
     </aside>

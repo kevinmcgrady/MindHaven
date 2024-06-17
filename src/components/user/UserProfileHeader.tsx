@@ -2,7 +2,7 @@ import { User } from '@prisma/client';
 import Image from 'next/image';
 import { Fragment } from 'react';
 
-import { isUserFollowing } from '@/queries/user';
+import { isUserFollowing } from '@/queries/following';
 import { formatDate } from '@/utils/formatDate';
 
 import FollowAndSupportButtons from './FollowAndSupportButtons';
@@ -10,11 +10,15 @@ import FollowAndSupportButtons from './FollowAndSupportButtons';
 type UserProfileHeaderProps = {
   user: User;
   isCurrentUser: boolean;
+  noOfFollowers: number;
+  noOfFollowing: number;
 };
 
 const UserProfileHeader = async ({
   user,
   isCurrentUser,
+  noOfFollowers,
+  noOfFollowing,
 }: UserProfileHeaderProps) => {
   const isFollowing = await isUserFollowing(user.id);
 
@@ -46,14 +50,10 @@ const UserProfileHeader = async ({
         </div>
 
         <div className='flex gap-2 justify-center mt-2 text-sm text-muted-foreground'>
-          <p>Followers: 0</p>
-          <p>Following: 0</p>
+          <p>Followers: {noOfFollowers}</p>
+          <p>Following: {noOfFollowing}</p>
           <p>Support: 0</p>
         </div>
-
-        <p className='text-center text-sm text-muted-foreground mt-4'>
-          {user.bio}
-        </p>
 
         {!isCurrentUser && (
           <FollowAndSupportButtons
@@ -61,6 +61,10 @@ const UserProfileHeader = async ({
             isUserFollowing={Boolean(isFollowing)}
           />
         )}
+
+        <p className='text-center text-sm text-muted-foreground mt-8'>
+          {user.bio}
+        </p>
       </div>
     </Fragment>
   );

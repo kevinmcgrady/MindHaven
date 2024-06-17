@@ -38,6 +38,10 @@ export const getUserDetails = async () => {
     where: {
       emailAddress: authUser.emailAddresses[0].emailAddress,
     },
+    include: {
+      followers: true,
+      following: true,
+    },
   });
 
   return user;
