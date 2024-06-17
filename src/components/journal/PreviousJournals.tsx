@@ -62,7 +62,7 @@ const PreviousJournals = ({
       setSelectedJournals(null);
       setIsLoading(true);
       console.log(entryDate);
-      const journal = await getJournalByDate(new Date(entryDate));
+      const journal = await getJournalByDate(entryDate);
       setSelectedJournals(journal);
     } catch (error) {
       toast({
