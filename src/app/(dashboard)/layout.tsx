@@ -13,10 +13,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   await syncUser();
-
   return (
     <main className='min-h-screen flex flex-col'>
-      <Header />
+      <Header hideSignInButton />
       <SearchBar />
       <section className='container px-0 md:px-8 flex flex-1 mb-4'>
         <LeftSidebar />

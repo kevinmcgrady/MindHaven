@@ -24,13 +24,8 @@ const JournalFeatureSection = () => {
 
   return (
     <CardSection>
-      <div className='mt-8 md:mt-32 gap-4 md:gap-12 grid grid-cols-1 md:grid-cols-2 md:mb-32 mb-12'>
-        <JournalCard
-          className='shadow-2xl rounded-lg p-8 max-w-full md:max-w-xl place-self-end'
-          badgeColor='#FFDFB9'
-          journal={journal}
-        />
-        <div>
+      <div className='mt-8 md:mt-32 gap-12 grid grid-cols-1 md:grid-cols-2 md:mb-32 mb-12'>
+        <div className='justify-self-end'>
           <h2 className='font-bold text-3xl mt-8'>
             <span className='text-[#F77334]'>Write</span> daily journals
           </h2>
@@ -73,6 +68,12 @@ const JournalFeatureSection = () => {
             </li>
           </ul>
         </div>
+
+        <JournalCard
+          className='shadow-2xl rounded-lg p-8 max-w-full md:max-w-xl '
+          badgeColor='#FFDFB9'
+          journal={journal}
+        />
       </div>
     </CardSection>
   );

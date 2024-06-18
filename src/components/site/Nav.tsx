@@ -1,5 +1,6 @@
 'use client';
 
+import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
@@ -8,9 +9,13 @@ import { menuItems } from '@/constants/menuItems';
 import CardSection from '../layout/CardSection';
 import { Button } from '../ui/button';
 
-export const Nav = () => {
-  const pathname = usePathname();
+type NavProps = {
+  userFirstName: string | undefined | null;
+  userLastName: string | undefined | null;
+};
 
+export const Nav = ({ userFirstName, userLastName }: NavProps) => {
+  const pathname = usePathname();
   return (
     <CardSection noSpacing>
       <nav className='flex flex-col space-y-4'>
@@ -28,6 +33,13 @@ export const Nav = () => {
             </Link>
           );
         })}
+
+        <div className='flex gap-2 items-center p-4 rounded-lg border'>
+          <UserButton />
+          <p className='font-semibold text-sm'>
+            {userFirstName} {userLastName}
+          </p>
+        </div>
       </nav>
     </CardSection>
   );

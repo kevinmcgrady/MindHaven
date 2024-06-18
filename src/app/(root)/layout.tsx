@@ -10,7 +10,7 @@ export default function RootLayout({
 }>) {
   return (
     <main className=' h-screen flex flex-col'>
-      <Header />
+      <Header hideMobileNav />
       <section className='flex flex-1'>
         <section className='flex-1 w-full'>{children}</section>
       </section>
