@@ -1,7 +1,6 @@
 import { Fragment } from 'react';
 
 import CardSection from '@/components/layout/CardSection';
-import UserBadges from '@/components/user/UserBadges';
 import UserProfileHeader from '@/components/user/UserProfileHeader';
 import UserTags from '@/components/user/UserTags';
 import { WelcomeScreen } from '@/components/WelcomeScreen';
@@ -32,10 +31,6 @@ const page = async () => {
 
       <CardSection>
         <UserTags tags={user.tags} />
-      </CardSection>
-
-      <CardSection>
-        <UserBadges />
       </CardSection>
     </Fragment>
   );
