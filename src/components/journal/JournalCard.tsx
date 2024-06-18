@@ -11,16 +11,18 @@ type JournalCardProps = {
   journal: Journal;
   dense?: boolean;
   badgeColor: string;
+  className?: string;
 };
 
 const JournalCard = ({
   title,
   journal,
   badgeColor,
+  className,
   dense = false,
 }: JournalCardProps) => {
   return (
-    <div>
+    <div className={cn(className)}>
       {title && (
         <h2 className='font-light text-muted-foreground mb-2'>{title}</h2>
       )}

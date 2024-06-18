@@ -1,7 +1,7 @@
 import { getUserSubscriptionPlan } from '@/queries/stripe';
 
 import { PlanUpgrade } from '../PlanUpgrade';
-import { Nav } from './Nav';
+import { Nav } from '../site/Nav';
 
 export const LeftSidebar = async () => {
   const subscriptionPlan = await getUserSubscriptionPlan();

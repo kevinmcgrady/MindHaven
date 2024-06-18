@@ -89,7 +89,7 @@ const CreateJornalDialog = ({
         voice: values.voice as Voice,
       });
 
-      router.push(urls.dashboard.journal);
+      router.refresh();
     } catch (error) {
       toast({
         title: 'Oops',
