@@ -15,12 +15,12 @@ export default async function RootLayout({
   await syncUser();
 
   return (
-    <main className='container px-0 md:px-8 py-4 min-h-screen flex flex-col'>
+    <main className='min-h-screen flex flex-col'>
       <Header />
       <SearchBar />
-      <section className='flex flex-1'>
+      <section className='container px-0 md:px-8 flex flex-1 mb-4'>
         <LeftSidebar />
-        <section className='flex-1 w-full md:mx-4'>{children}</section>
+        <section className='flex-1 w-full'>{children}</section>
         <RightSidebar />
       </section>
       <Footer />

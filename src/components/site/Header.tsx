@@ -9,7 +9,7 @@ export const Header = async () => {
   const user = await getUserDetails();
 
   return (
-    <div className='flex gap-8 items-center mb-4 justify-between bg-white p-4 md:rounded-xl'>
+    <div className='flex gap-8 items-center mb-4 justify-between bg-white p-4'>
       <Logo />
       <MobileNav
         userFirstName={user?.firstName}

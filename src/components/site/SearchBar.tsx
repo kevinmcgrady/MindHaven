@@ -56,54 +56,56 @@ const SearchBar = () => {
   }, [searchQuery]);
 
   return (
-    <CardSection className='mb-4' noSpacing>
-      <Dialog>
-        <DialogTrigger asChild>
-          <div className='border px-3 py-2 rounded-md cursor-pointer'>
-            <SearchIcon size={20} className='text-muted-foreground' />
-          </div>
-        </DialogTrigger>
-
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Find Friends</DialogTitle>
-            <DialogDescription>
-              Search for friends by their username, location, or tags
-            </DialogDescription>
-          </DialogHeader>
-          <div>
-            <Input
-              value={query}
-              onChange={(event) => setQuery(event.target.value)}
-              placeholder='Scotland'
-            />
-          </div>
-
-          {isLoading && (
-            <Loader2 size={20} className='animate-spin mx-auto mt-4' />
-          )}
-
-          {!hasResults && !isLoading && searchQuery.length !== 0 && (
-            <EmptyState description='No results found' />
-          )}
-
-          {hasResults && !isLoading && (
-            <div className='flex flex-col gap-4'>
-              {searchResults.map((user) => (
-                <UserSearchCard
-                  key={user.username}
-                  country={user.country!}
-                  firstName={user.firstName}
-                  imageUrl={user.imageUrl}
-                  lastName={user.lastName}
-                  username={user.username!}
-                />
-              ))}
+    <div className='container px-0 md:px-8'>
+      <CardSection className='mb-4' noSpacing>
+        <Dialog>
+          <DialogTrigger asChild>
+            <div className='border px-3 py-2 rounded-md cursor-pointer'>
+              <SearchIcon size={20} className='text-muted-foreground' />
             </div>
-          )}
-        </DialogContent>
-      </Dialog>
-    </CardSection>
+          </DialogTrigger>
+
+          <DialogContent>
+            <DialogHeader>
+              <DialogTitle>Find Friends</DialogTitle>
+              <DialogDescription>
+                Search for friends by their username, location, or tags
+              </DialogDescription>
+            </DialogHeader>
+            <div>
+              <Input
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder='Scotland'
+              />
+            </div>
+
+            {isLoading && (
+              <Loader2 size={20} className='animate-spin mx-auto mt-4' />
+            )}
+
+            {!hasResults && !isLoading && searchQuery.length !== 0 && (
+              <EmptyState description='No results found' />
+            )}
+
+            {hasResults && !isLoading && (
+              <div className='flex flex-col gap-4'>
+                {searchResults.map((user) => (
+                  <UserSearchCard
+                    key={user.username}
+                    country={user.country!}
+                    firstName={user.firstName}
+                    imageUrl={user.imageUrl}
+                    lastName={user.lastName}
+                    username={user.username!}
+                  />
+                ))}
+              </div>
+            )}
+          </DialogContent>
+        </Dialog>
+      </CardSection>
+    </div>
   );
 };
 

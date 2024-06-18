@@ -28,7 +28,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang='en'>
-        <body className={cn(maprope.className, 'bg-[#F8F9FC]')}>
+        <body className={cn(maprope.className, 'bg-[#F8F9FD]')}>
           {children}
           <Toaster />
           <Analytics />
