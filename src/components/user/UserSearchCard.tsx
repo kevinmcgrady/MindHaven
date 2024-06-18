@@ -1,9 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { DialogClose } from '@/components/ui/dialog';
 import { urls } from '@/constants/urls';
-
-import { DialogClose } from '../ui/dialog';
 
 type UserSearchCardProps = {
   username: string;

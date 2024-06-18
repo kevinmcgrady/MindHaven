@@ -1,10 +1,9 @@
 import { Journal } from '@prisma/client';
 
+import ListenButton from '@/components/ListenButton';
+import { Badge } from '@/components/ui/badge';
 import { cn } from '@/lib/utils';
 import { formatDate } from '@/utils/formatDate';
-
-import ListenButton from '../ListenButton';
-import { Badge } from '../ui/badge';
 
 type JournalCardProps = {
   title?: string;

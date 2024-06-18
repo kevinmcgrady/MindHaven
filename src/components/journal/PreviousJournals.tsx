@@ -8,23 +8,26 @@ import { Fragment, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { moods } from '@/constants/moods';
-import { cn } from '@/lib/utils';
-import { getJournalByDate } from '@/queries/journal';
-
-import { Button } from '../ui/button';
-import { Calendar } from '../ui/calendar';
+import JournalCard from '@/components/journal/JournalCard';
+import { Button } from '@/components/ui/button';
+import { Calendar } from '@/components/ui/calendar';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '../ui/form';
-import { Popover, PopoverContent, PopoverTrigger } from '../ui/popover';
-import { Separator } from '../ui/separator';
-import { useToast } from '../ui/use-toast';
-import JournalCard from './JournalCard';
+} from '@/components/ui/form';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover';
+import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/components/ui/use-toast';
+import { moods } from '@/constants/moods';
+import { cn } from '@/lib/utils';
+import { getJournalByDate } from '@/queries/journal';
 
 type PreviousJournalsProps = {
   journals: Journal[];

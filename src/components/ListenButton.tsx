@@ -3,12 +3,11 @@
 import { Journal } from '@prisma/client';
 import { Play } from 'lucide-react';
 
+import { AudioPlayer } from '@/components/AudioPlayer';
+import { Badge } from '@/components/ui/badge';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import { formatDate } from '@/utils/formatDate';
-
-import { AudioPlayer } from './AudioPlayer';
-import { Badge } from './ui/badge';
-import { Button } from './ui/button';
-import { Dialog, DialogContent, DialogTrigger } from './ui/dialog';
 
 type ListenButtonProps = {
   journal: Journal;

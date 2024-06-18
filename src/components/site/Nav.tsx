@@ -4,10 +4,9 @@ import { UserButton } from '@clerk/nextjs';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import CardSection from '@/components/layout/CardSection';
+import { Button } from '@/components/ui/button';
 import { menuItems } from '@/constants/menuItems';
-
-import CardSection from '../layout/CardSection';
-import { Button } from '../ui/button';
 
 type NavProps = {
   userFirstName: string | undefined | null;

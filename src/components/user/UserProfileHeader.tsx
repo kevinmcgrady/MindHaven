@@ -2,10 +2,9 @@ import { User } from '@prisma/client';
 import Image from 'next/image';
 import { Fragment } from 'react';
 
+import FollowAndSupportButtons from '@/components/user/FollowAndSupportButtons';
 import { isUserFollowing } from '@/queries/following';
 import { formatDate } from '@/utils/formatDate';
-
-import FollowAndSupportButtons from './FollowAndSupportButtons';
 
 type UserProfileHeaderProps = {
   user: User;

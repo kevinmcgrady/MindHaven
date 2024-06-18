@@ -4,10 +4,9 @@ import { Loader2 } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/components/ui/use-toast';
 import { followUnfollowUser } from '@/queries/following';
-
-import { Button } from '../ui/button';
-import { useToast } from '../ui/use-toast';
 
 type FollowAndSupportButtonsProps = {
   targetUserId: string;

@@ -1,8 +1,7 @@
 import { AudioLines, BookHeart, CaseSensitive } from 'lucide-react';
 
+import CardSection from '@/components/layout/CardSection';
 import { formatNumber } from '@/utils/formatNumber';
-
-import CardSection from '../layout/CardSection';
 
 type PlanFeaturesSectionProps = {
   title: string;

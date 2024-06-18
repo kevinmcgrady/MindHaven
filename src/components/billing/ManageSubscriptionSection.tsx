@@ -1,7 +1,6 @@
+import CreateStripeSessionButton from '@/components/CreateStripeSessionButton';
+import CardSection from '@/components/layout/CardSection';
 import { formatDate } from '@/utils/formatDate';
-
-import CreateStripeSessionButton from '../CreateStripeSessionButton';
-import CardSection from '../layout/CardSection';
 
 type ManageSubscriptionSectionProps = {
   title: string;

@@ -13,6 +13,8 @@
     "jsx": "preserve",
     "incremental": true,
     "target": "ES2016",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "plugins": [
       {
         "name": "next"

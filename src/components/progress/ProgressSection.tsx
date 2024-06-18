@@ -3,17 +3,16 @@
 import { Journal } from '@prisma/client';
 import { Fragment, useState } from 'react';
 
+import PreviousJournals from '@/components/journal/PreviousJournals';
+import CardSection from '@/components/layout/CardSection';
+import Chart from '@/components/progress/components/Chart';
+import MonthYearDropdown from '@/components/progress/components/MonthYearDropdown';
+import EmptyState from '@/components/site/EmptyState';
+import { Separator } from '@/components/ui/separator';
+import { useToast } from '@/components/ui/use-toast';
 import { cn } from '@/lib/utils';
 import { getJournalsByMonthAndYear } from '@/queries/journal';
-
-import { mapChartData } from '../../utils/mapChartData';
-import PreviousJournals from '../journal/PreviousJournals';
-import CardSection from '../layout/CardSection';
-import EmptyState from '../site/EmptyState';
-import { Separator } from '../ui/separator';
-import { useToast } from '../ui/use-toast';
-import Chart from './components/Chart';
-import MonthYearDropdown from './components/MonthYearDropdown';
+import { mapChartData } from '@/utils/mapChartData';
 
 type ProgressSectionProps = {
   defaultJournals: Journal[];

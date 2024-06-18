@@ -1,11 +1,10 @@
 import { BadgeCheck } from 'lucide-react';
 import Link from 'next/link';
 
+import CardSection from '@/components/layout/CardSection';
+import { buttonVariants } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
 import { urls } from '@/constants/urls';
-
-import CardSection from '../layout/CardSection';
-import { buttonVariants } from '../ui/button';
-import { Separator } from '../ui/separator';
 
 const PricingSection = () => {
   return (

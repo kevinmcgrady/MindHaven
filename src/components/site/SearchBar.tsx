@@ -4,10 +4,8 @@ import { User } from '@prisma/client';
 import { Loader2, Search as SearchIcon } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-import { useDebounce } from '@/hooks/useDebounce';
-import { searchUsers } from '@/queries/search';
-
-import CardSection from '../layout/CardSection';
+import CardSection from '@/components/layout/CardSection';
+import EmptyState from '@/components/site/EmptyState';
 import {
   Dialog,
   DialogContent,
@@ -15,11 +13,12 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from '../ui/dialog';
-import { Input } from '../ui/input';
-import { useToast } from '../ui/use-toast';
-import UserSearchCard from '../user/UserSearchCard';
-import EmptyState from './EmptyState';
+} from '@/components/ui/dialog';
+import { Input } from '@/components/ui/input';
+import { useToast } from '@/components/ui/use-toast';
+import UserSearchCard from '@/components/user/UserSearchCard';
+import { useDebounce } from '@/hooks/useDebounce';
+import { searchUsers } from '@/queries/search';
 
 type SearchBarResults =
   | Pick<User, 'firstName' | 'lastName' | 'country' | 'imageUrl' | 'username'>[]

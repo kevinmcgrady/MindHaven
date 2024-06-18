@@ -1,4 +1,4 @@
-import FriendsActivity from '../dashboard/FriendsActivity';
+import FriendsActivity from '@/components/dashboard/FriendsActivity';
 
 export const RightSidebar = async () => {
   return (

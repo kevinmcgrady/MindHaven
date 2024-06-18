@@ -3,7 +3,7 @@
 import { currentUser } from '@clerk/nextjs/server';
 import { User } from '@prisma/client';
 
-import { db } from '../lib/db';
+import { db } from '@/lib/db';
 
 export const syncUser = async () => {
   const authUser = await currentUser();

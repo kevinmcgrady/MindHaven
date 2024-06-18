@@ -1,7 +1,7 @@
 import { Journal } from '@prisma/client';
-import { describe, expect,it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { mapChartData, mapChartDataResponse } from './mapChartData';
+import { mapChartData, mapChartDataResponse } from '@/utils/mapChartData';
 
 const journals: Journal[] = [
   {

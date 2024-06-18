@@ -2,9 +2,8 @@
 
 import { PLANS } from '@/config/plans';
 import { stripe } from '@/lib/stripe';
+import { getUserDetails } from '@/queries/auth';
 import { absoluteUrl } from '@/utils/absoluteUrl';
-
-import { getUserDetails } from './auth';
 
 export const createStripeCheckoutSession = async (productKey: string) => {
   const user = await getUserDetails();

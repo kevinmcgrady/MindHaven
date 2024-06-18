@@ -1,9 +1,8 @@
 import { ChevronRight } from 'lucide-react';
 import Link from 'next/link';
 
+import CardSection from '@/components/layout/CardSection';
 import { urls } from '@/constants/urls';
-
-import CardSection from './layout/CardSection';
 
 export const PlanUpgrade = () => {
   return (

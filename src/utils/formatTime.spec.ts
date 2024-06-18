@@ -1,6 +1,6 @@
-import { describe, expect,it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { formatTime } from './formatTime';
+import { formatTime } from '@/utils/formatTime';
 
 describe('formatTime', () => {
   it('should return the time formatted', () => {

@@ -1,7 +1,7 @@
 import { Journal } from '@prisma/client';
 import { describe, expect, it } from 'vitest';
 
-import { getUsersMood } from './getUsersMood';
+import { getUsersMood } from '@/utils/getUsersMood';
 
 describe('getUsersMood', () => {
   it('should return one mood if only one element in array', () => {

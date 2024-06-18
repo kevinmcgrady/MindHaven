@@ -1,4 +1,4 @@
-import CardSection from './layout/CardSection';
+import CardSection from '@/components/layout/CardSection';
 
 type MoodNotificationProps = {
   message: string;

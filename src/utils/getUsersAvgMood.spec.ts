@@ -1,7 +1,7 @@
 import { Journal } from '@prisma/client';
-import { describe, expect,it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { getUsersAvgMood } from './getUsersAvgMood';
+import { getUsersAvgMood } from '@/utils/getUsersAvgMood';
 
 const journals: Journal[] = [
   {

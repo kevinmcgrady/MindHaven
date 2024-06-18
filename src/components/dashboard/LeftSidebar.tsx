@@ -1,8 +1,7 @@
+import { PlanUpgrade } from '@/components/PlanUpgrade';
+import { Nav } from '@/components/site/Nav';
 import { getUserDetails } from '@/queries/auth';
 import { getUserSubscriptionPlan } from '@/queries/stripe';
-
-import { PlanUpgrade } from '../PlanUpgrade';
-import { Nav } from '../site/Nav';
 
 export const LeftSidebar = async () => {
   const user = await getUserDetails();

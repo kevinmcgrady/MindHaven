@@ -1,11 +1,10 @@
 import Link from 'next/link';
 
+import Logo from '@/components/site/Logo';
+import MobileNav from '@/components/site/MobileNav';
+import { buttonVariants } from '@/components/ui/button';
 import { urls } from '@/constants/urls';
 import { getUserDetails } from '@/queries/auth';
-
-import { buttonVariants } from '../ui/button';
-import Logo from './Logo';
-import MobileNav from './MobileNav';
 
 type HeaderProps = {
   hideSignInButton?: boolean;

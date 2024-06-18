@@ -2,13 +2,12 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Fragment } from 'react';
 
+import CardSection from '@/components/layout/CardSection';
+import { Badge } from '@/components/ui/badge';
+import { Separator } from '@/components/ui/separator';
 import { moods } from '@/constants/moods';
 import { urls } from '@/constants/urls';
 import { getUsersFollowing } from '@/queries/following';
-
-import CardSection from '../layout/CardSection';
-import { Badge } from '../ui/badge';
-import { Separator } from '../ui/separator';
 
 type FriendsProps = {
   removePadding?: boolean;

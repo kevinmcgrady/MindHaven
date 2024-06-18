@@ -1,8 +1,7 @@
 import { Menu } from 'lucide-react';
 
+import { Nav } from '@/components/site/Nav';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-
-import { Nav } from './Nav';
 
 type MobileNavProps = {
   userFirstName: string | undefined | null;

@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 
-import { Badge } from '../ui/badge';
+import { Badge } from '@/components/ui/badge';
 
 type UserTagsProps = {
   tags: string[];

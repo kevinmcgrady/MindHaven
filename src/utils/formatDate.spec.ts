@@ -1,6 +1,6 @@
-import { describe, expect,it } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
-import { formatDate } from './formatDate';
+import { formatDate } from '@/utils/formatDate';
 
 describe('formatDate', () => {
   it('should return the correct date formatted', () => {

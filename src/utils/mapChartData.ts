@@ -1,7 +1,7 @@
 import { Journal, Mood } from '@prisma/client';
 import _ from 'underscore';
 
-import { moods } from '../constants/moods';
+import { moods } from '@/constants/moods';
 
 export type mapChartDataResponse = {
   mood: Mood;

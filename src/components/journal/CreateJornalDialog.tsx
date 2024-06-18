@@ -8,33 +8,31 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 
-import { PLANS } from '@/config/plans';
-import { aiVoices } from '@/constants/aiVoices';
-import { moods } from '@/constants/moods';
-import { urls } from '@/constants/urls';
-import { createJornal } from '@/queries/journal';
-import { generateAudioFile } from '@/queries/openai';
-
-import { Button } from '../ui/button';
-import { Dialog, DialogContent, DialogTrigger } from '../ui/dialog';
+import { Button } from '@/components/ui/button';
+import { Dialog, DialogContent, DialogTrigger } from '@/components/ui/dialog';
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from '../ui/form';
-import { Input } from '../ui/input';
-import { Label } from '../ui/label';
+} from '@/components/ui/form';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '../ui/select';
-import { Textarea } from '../ui/textarea';
-import { useToast } from '../ui/use-toast';
+} from '@/components/ui/select';
+import { Textarea } from '@/components/ui/textarea';
+import { useToast } from '@/components/ui/use-toast';
+import { PLANS } from '@/config/plans';
+import { aiVoices } from '@/constants/aiVoices';
+import { moods } from '@/constants/moods';
+import { createJornal } from '@/queries/journal';
+import { generateAudioFile } from '@/queries/openai';
 
 type CreateJornalDialogProps = {
   isProPlan: boolean;

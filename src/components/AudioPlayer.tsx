@@ -3,10 +3,9 @@
 import { Pause, Play } from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+import { Button } from '@/components/ui/button';
+import { Progress } from '@/components/ui/progress';
 import { formatTime } from '@/utils/formatTime';
-
-import { Button } from './ui/button';
-import { Progress } from './ui/progress';
 
 type AudioPlayerProps = {
   audioUrl: string;

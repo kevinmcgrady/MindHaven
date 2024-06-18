@@ -2,8 +2,8 @@ import { Journal } from '@prisma/client';
 import { BadgeCheck } from 'lucide-react';
 import React from 'react';
 
-import JournalCard from '../journal/JournalCard';
-import CardSection from '../layout/CardSection';
+import JournalCard from '@/components/journal/JournalCard';
+import CardSection from '@/components/layout/CardSection';
 
 const JournalFeatureSection = () => {
   const journal: Journal = {

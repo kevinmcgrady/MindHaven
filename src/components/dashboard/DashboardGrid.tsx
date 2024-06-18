@@ -1,10 +1,9 @@
+import DashboardCard from '@/components/dashboard/DashboardCard';
 import { urls } from '@/constants/urls';
 import { getAllJournalCount, getLastJournalDate } from '@/queries/journal';
 import { getUsersAvgMoodForTheMonth } from '@/queries/moods';
 import { getUserSubscriptionPlan } from '@/queries/stripe';
 import { formatDate } from '@/utils/formatDate';
-
-import DashboardCard from './DashboardCard';
 
 const DashboardGrid = async () => {
   const subscriptionPlan = await getUserSubscriptionPlan();

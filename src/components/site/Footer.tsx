@@ -1,6 +1,4 @@
-import Link from 'next/link';
-
-import Logo from './Logo';
+import Logo from '@/components/site/Logo';
 
 export const Footer = () => {
   return (

@@ -1,6 +1,6 @@
 import { BarChart, Home, Notebook, UserCircle, Wallet } from 'lucide-react';
 
-import { urls } from './urls';
+import { urls } from '@/constants/urls';
 
 export const menuItems = [
   {

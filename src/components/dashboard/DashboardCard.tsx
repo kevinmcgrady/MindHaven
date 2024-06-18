@@ -1,8 +1,7 @@
 import Link from 'next/link';
 
+import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-
-import { Button } from '../ui/button';
 
 type Gradient = 'red-yellow' | 'teal-lime' | 'pink-orange' | 'green-blue';
 

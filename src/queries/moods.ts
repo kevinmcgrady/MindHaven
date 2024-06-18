@@ -4,10 +4,9 @@ import { currentUser } from '@clerk/nextjs/server';
 import { format } from 'date-fns';
 import _ from 'underscore';
 
+import { getJournalByDate, getJournalsByMonthAndYear } from '@/queries/journal';
 import { getUsersAvgMood } from '@/utils/getUsersAvgMood';
 import { getUsersMood } from '@/utils/getUsersMood';
-
-import { getJournalByDate, getJournalsByMonthAndYear } from './journal';
 
 type getUserMoodForTodayResponse = {
   message: string;
