@@ -1,9 +1,10 @@
-import { currentUser } from '@clerk/nextjs/server';
-import { describe, expect,it, vi } from 'vitest';
+import { currentUser,User as AuthUser } from '@clerk/nextjs/server';
+import { User } from '@prisma/client';
+import { describe, expect, it, vi } from 'vitest';
 
 import { db } from '@/lib/db';
 
-import { getUserByUsername } from './user';
+import { getUserByUsername } from '.';
 
 vi.mock('@clerk/nextjs/server');
 
@@ -38,9 +39,9 @@ describe('getUserByUsername', () => {
       lastName: 'McGrady',
     };
 
-    vi.mocked(currentUser).mockResolvedValue(authUser as any);
+    vi.mocked(currentUser).mockResolvedValue(authUser as AuthUser);
 
-    vi.mocked(db.user.findUnique).mockResolvedValue(dbUser as any);
+    vi.mocked(db.user.findUnique).mockResolvedValue(dbUser as User);
 
     const actual = await getUserByUsername('kevinmcgrady');
 
@@ -54,7 +55,7 @@ describe('getUserByUsername', () => {
       lastName: 'Doe',
     };
 
-    vi.mocked(currentUser).mockResolvedValue(authUser as any);
+    vi.mocked(currentUser).mockResolvedValue(authUser as AuthUser);
 
     vi.mocked(db.user.findUnique).mockResolvedValue(null);
 
