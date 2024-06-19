@@ -8,7 +8,5 @@ export const getUsersAvgMood = (journals: Journal[]) => {
     grouped[previous] > grouped[current] ? previous : current,
   );
 
-  if (!mood) return null;
-
   return mood;
 };

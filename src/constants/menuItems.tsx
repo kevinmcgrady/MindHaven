@@ -1,8 +1,21 @@
-import { BarChart, Home, Notebook, UserCircle, Wallet } from 'lucide-react';
+import {
+  BarChart,
+  Home,
+  LucideIcon,
+  Notebook,
+  UserCircle,
+  Wallet,
+} from 'lucide-react';
 
 import { urls } from '@/constants/urls';
 
-export const menuItems = [
+type MenuItems = {
+  label: string;
+  path: string;
+  Icon: LucideIcon;
+};
+
+export const menuItems: MenuItems[] = [
   {
     label: 'My Dashboard',
     path: urls.dashboard.root,
