@@ -10,7 +10,7 @@ function NotFoundPage() {
     <div className='container flex flex-col items-center'>
       <Image src='/images/404.svg' alt='Not Found' height={450} width={450} />
       <Link
-        className={cn(buttonVariants(), 'mb-32')}
+        className={cn(buttonVariants({ size: 'lg' }), 'mb-32')}
         href={urls.dashboard.root}
       >
         Back to safety
