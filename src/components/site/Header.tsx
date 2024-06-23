@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { Fragment } from 'react';
 
 import Logo from '@/components/site/Logo';
 import MobileNav from '@/components/site/MobileNav';
@@ -27,9 +28,17 @@ export const Header = async ({
       )}
 
       {!hideSignInButton && (
-        <Link className={buttonVariants()} href={urls.auth.signIn}>
-          Sign in
-        </Link>
+        <Fragment>
+          {user ? (
+            <Link className={buttonVariants()} href={urls.dashboard.root}>
+              Dashboard
+            </Link>
+          ) : (
+            <Link className={buttonVariants()} href={urls.auth.signIn}>
+              Sign in
+            </Link>
+          )}
+        </Fragment>
       )}
     </div>
   );
