@@ -1,5 +1,5 @@
-import { currentUser,User as AuthUser } from '@clerk/nextjs/server';
-import { beforeEach,describe, expect, it, vi } from 'vitest';
+import { currentUser, User as AuthUser } from '@clerk/nextjs/server';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { db } from '@/lib/db';
 
@@ -32,6 +32,8 @@ describe('getAllJournals', () => {
   });
 
   it('should return the journals', async () => {
+    const date = new Date();
+
     vi.mocked(currentUser).mockResolvedValue({
       emailAddresses: [{ emailAddress: 'email.com' }],
     } as AuthUser);
@@ -40,13 +42,13 @@ describe('getAllJournals', () => {
       {
         id: 'id',
         audioUrl: 'audio',
-        createdAt: new Date(),
+        createdAt: date,
         createdAtMonth: 'month',
         createdAtYear: 'year',
         entry: 'entry',
         mood: 'happy',
         title: 'title',
-        updatedAt: new Date(),
+        updatedAt: date,
         userId: 'userId',
         voice: 'shimmer',
       },
@@ -59,13 +61,13 @@ describe('getAllJournals', () => {
       {
         id: 'id',
         audioUrl: 'audio',
-        createdAt: new Date(),
+        createdAt: date,
         createdAtMonth: 'month',
         createdAtYear: 'year',
         entry: 'entry',
         mood: 'happy',
         title: 'title',
-        updatedAt: new Date(),
+        updatedAt: date,
         userId: 'userId',
         voice: 'shimmer',
       },

@@ -1,5 +1,5 @@
-import { currentUser,User as AuthUser } from '@clerk/nextjs/server';
-import { beforeEach,describe, expect, it, vi } from 'vitest';
+import { currentUser, User as AuthUser } from '@clerk/nextjs/server';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { getUsersMood } from '@/utils/getUsersMood';
 
