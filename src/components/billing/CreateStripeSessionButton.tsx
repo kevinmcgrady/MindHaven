@@ -30,6 +30,7 @@ const CreateStripeSessionButton = ({
       if (url) {
         return router.push(url);
       }
+
       throw new Error();
     } catch (error) {
       toast({
@@ -43,9 +44,13 @@ const CreateStripeSessionButton = ({
   };
 
   return (
-    <Button onClick={handleCreateStripeSession}>
+    <Button data-testid='payment-button' onClick={handleCreateStripeSession}>
       {isSubmitting ? (
-        <Loader2 size={15} className='animate-spin' />
+        <Loader2
+          data-testid='loading-spinner'
+          size={15}
+          className='animate-spin'
+        />
       ) : (
         buttonText
       )}

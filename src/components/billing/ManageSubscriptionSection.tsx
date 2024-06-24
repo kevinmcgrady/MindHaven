@@ -1,4 +1,4 @@
-import CreateStripeSessionButton from '@/components/CreateStripeSessionButton';
+import CreateStripeSessionButton from '@/components/billing/CreateStripeSessionButton';
 import CardSection from '@/components/layout/CardSection';
 import { formatDate } from '@/utils/formatDate';
 

@@ -1,11 +1,11 @@
 import '@testing-library/jest-dom/vitest';
 
 import { render, screen } from '@testing-library/react';
-import { describe, expect,it, vi } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
 
 import ManageSubscriptionSection from './ManageSubscriptionSection';
 
-vi.mock('@/components/CreateStripeSessionButton', () => {
+vi.mock('@/components/billing/CreateStripeSessionButton', () => {
   return {
     default: vi.fn(({ props }) => (
       <button data-testid='stripe-button' {...props} />
