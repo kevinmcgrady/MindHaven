@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react(), tsconfigPaths()],
   test: {
     environment: 'jsdom',
+    globals: true,
     coverage: {
       provider: 'istanbul',
       exclude: [
