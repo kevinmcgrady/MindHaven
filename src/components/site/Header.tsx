@@ -18,7 +18,7 @@ export const Header = async ({
 }: HeaderProps) => {
   const user = await getUserDetails();
   return (
-    <div className='flex gap-8 items-center mb-4 justify-between bg-white p-4'>
+    <div className='flex gap-8 items-center mb-4 justify-between bg-card p-4'>
       <Logo />
       {!hideMobileNav && (
         <MobileNav

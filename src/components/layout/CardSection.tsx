@@ -11,7 +11,7 @@ type CardSectionProps = {
 const CardSection = ({ children, noSpacing, className }: CardSectionProps) => {
   return (
     <div
-      className={cn('md:rounded-xl p-4 bg-white', className, {
+      className={cn('md:rounded-xl p-4 bg-card', className, {
         'mt-4': !noSpacing,
       })}
     >

@@ -9,7 +9,7 @@ import { urls } from '@/constants/urls';
 const PricingSection = () => {
   return (
     <section className='my-12'>
-      <h2 className='font-bold text-3xl text-center'>
+      <h2 className='font-bold text-4xl text-center'>
         Ready to <span className='text-[#F77334]'>start tracking?</span>
       </h2>
       <p className='text-center text-muted-foreground mt-4'>

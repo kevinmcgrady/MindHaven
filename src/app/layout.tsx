@@ -9,6 +9,7 @@ import type React from 'react';
 
 import { Toaster } from '@/components/ui/toaster';
 import { cn } from '@/lib/utils';
+import { ThemeProvider } from '@/providers/ThemeProvider';
 
 const maprope = Manrope({ subsets: ['latin'] });
 
@@ -29,7 +30,15 @@ export default function RootLayout({
     <ClerkProvider>
       <html lang='en'>
         <body className={cn(maprope.className, 'bg-[#F8F9FD]')}>
-          {children}
+          <ThemeProvider
+            attribute='class'
+            defaultTheme='dark'
+            enableSystem
+            disableTransitionOnChange
+          >
+            {children}
+          </ThemeProvider>
+
           <Toaster />
           <Analytics />
           <SpeedInsights />
