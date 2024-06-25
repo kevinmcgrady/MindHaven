@@ -22,6 +22,7 @@ const Hero = () => {
       </p>
       <div className='mt-8 mx-auto text-center'>
         <Link
+          role='link'
           className={buttonVariants({ size: 'lg' })}
           href={urls.auth.signIn}
         >
@@ -31,6 +32,7 @@ const Hero = () => {
       <div className='mt-8'>
         <CardSection className='w-fit mx-auto shadow-2xl' noSpacing>
           <Image
+            role='img'
             src='/images/dashboard.png'
             alt='User dashboard'
             width={900}

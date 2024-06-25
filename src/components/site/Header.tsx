@@ -30,11 +30,19 @@ export const Header = async ({
       {!hideSignInButton && (
         <Fragment>
           {user ? (
-            <Link className={buttonVariants()} href={urls.dashboard.root}>
+            <Link
+              data-testid='dashboard-url'
+              className={buttonVariants()}
+              href={urls.dashboard.root}
+            >
               Dashboard
             </Link>
           ) : (
-            <Link className={buttonVariants()} href={urls.auth.signIn}>
+            <Link
+              data-testid='sign-in-url'
+              className={buttonVariants()}
+              href={urls.auth.signIn}
+            >
               Sign in
             </Link>
           )}

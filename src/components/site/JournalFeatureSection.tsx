@@ -26,40 +26,40 @@ const JournalFeatureSection = () => {
     <CardSection>
       <div className='mt-8 md:mt-32 gap-12 grid grid-cols-1 md:grid-cols-2 md:mb-32 mb-12'>
         <div className='justify-self-end'>
-          <h2 className='font-bold text-3xl mt-8'>
+          <h2 data-testid='title' className='font-bold text-3xl mt-8'>
             <span className='text-[#F77334]'>Write</span> daily journals
           </h2>
-          <p className='text-muted-foreground mt-2'>
+          <p data-testid='subtitle' className='text-muted-foreground mt-2'>
             Write daily journals and keep track of your overall mood for the day
           </p>
 
           <ul className='space-y-2 mt-4'>
-            <li className='flex items-center gap-2'>
+            <li data-testid='moods' className='flex items-center gap-2'>
               <BadgeCheck className='text-green-600' size={20} />{' '}
               <p>
                 <strong>6</strong> moods to choose from
               </p>
             </li>
-            <li className='flex items-center gap-2'>
+            <li data-testid='voices' className='flex items-center gap-2'>
               <BadgeCheck className='text-green-600' size={20} />
               <p>
                 Unique voices to <strong>personalise</strong> your entry
               </p>
             </li>
-            <li className='flex items-center gap-2'>
+            <li data-testid='journals' className='flex items-center gap-2'>
               <BadgeCheck className='text-green-600' size={20} />{' '}
               <p>
                 <strong>Listen</strong> to old journals entries anytime
               </p>
             </li>
-            <li className='flex items-center gap-2'>
+            <li data-testid='track' className='flex items-center gap-2'>
               <BadgeCheck className='text-green-600' size={20} />{' '}
               <p>
                 <strong>Track</strong> your mental state over the month with
                 charts
               </p>
             </li>
-            <li className='flex items-center gap-2'>
+            <li data-testid='category' className='flex items-center gap-2'>
               <BadgeCheck className='text-green-600' size={20} />{' '}
               <p>
                 Choose from <strong>5</strong> moods to categorize your journal
