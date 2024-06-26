@@ -59,7 +59,10 @@ const SearchBar = () => {
       <CardSection className='mb-4' noSpacing>
         <Dialog>
           <DialogTrigger asChild>
-            <div className='border px-3 py-2 rounded-md cursor-pointer'>
+            <div
+              data-testid='search'
+              className='border px-3 py-2 rounded-md cursor-pointer'
+            >
               <SearchIcon size={20} className='text-muted-foreground' />
             </div>
           </DialogTrigger>
@@ -73,6 +76,7 @@ const SearchBar = () => {
             </DialogHeader>
             <div>
               <Input
+                role='searchbox'
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}
                 placeholder='Scotland'
@@ -80,7 +84,11 @@ const SearchBar = () => {
             </div>
 
             {isLoading && (
-              <Loader2 size={20} className='animate-spin mx-auto mt-4' />
+              <Loader2
+                data-testid='loading'
+                size={20}
+                className='animate-spin mx-auto mt-4'
+              />
             )}
 
             {!hasResults && !isLoading && searchQuery.length !== 0 && (
