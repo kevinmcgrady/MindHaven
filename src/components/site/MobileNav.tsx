@@ -5,6 +5,8 @@ import { Menu } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
+import CardSection from '@/components/layout/CardSection';
+import { Button } from '@/components/ui/button';
 import {
   Sheet,
   SheetClose,
@@ -12,9 +14,6 @@ import {
   SheetTrigger,
 } from '@/components/ui/sheet';
 import { menuItems } from '@/constants/menuItems';
-
-import CardSection from '../layout/CardSection';
-import { Button } from '../ui/button';
 
 type MobileNavProps = {
   userFirstName: string | undefined | null;
