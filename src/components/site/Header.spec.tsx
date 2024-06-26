@@ -13,15 +13,15 @@ vi.mock('@/queries/auth');
 
 vi.mock('@/components/site/Logo', () => {
   return {
-    default: vi.fn(({ props }) => (
-      <Image alt='mock-image' data-testid='logo' {...props} />
+    default: vi.fn((props) => (
+      <Image alt='test' data-testid='logo' {...props} />
     )),
   };
 });
 
 vi.mock('@/components/site/MobileNav', () => {
   return {
-    default: vi.fn(({ props }) => <div data-testid='mobile-nav' {...props} />),
+    default: vi.fn((props) => <div data-testid='mobile-nav' {...props} />),
   };
 });
 

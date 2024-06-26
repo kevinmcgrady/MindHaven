@@ -7,7 +7,7 @@ import ManageSubscriptionSection from './ManageSubscriptionSection';
 
 vi.mock('@/components/billing/CreateStripeSessionButton', () => {
   return {
-    default: vi.fn(({ props }) => (
+    default: vi.fn((props) => (
       <button data-testid='stripe-button' {...props} />
     )),
   };

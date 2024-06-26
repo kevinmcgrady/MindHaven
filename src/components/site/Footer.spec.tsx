@@ -8,8 +8,8 @@ import { Footer } from './Footer';
 
 vi.mock('@/components/site/Logo', () => {
   return {
-    default: vi.fn(({ props }) => (
-      <Image alt='mock-image' data-testid='logo' {...props} />
+    default: vi.fn((props) => (
+      <Image alt='test' data-testid='logo' {...props} />
     )),
   };
 });

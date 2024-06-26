@@ -7,9 +7,7 @@ import JournalFeatureSection from './JournalFeatureSection';
 
 vi.mock('@/components/journal/JournalCard', () => {
   return {
-    default: vi.fn(({ props }) => (
-      <div data-testid='journal-card' {...props} />
-    )),
+    default: vi.fn((props) => <div data-testid='journal-card' {...props} />),
   };
 });
 describe('<JournalFeatureSecrion />', () => {

@@ -27,11 +27,11 @@ const MobileNav = ({ userFirstName, userLastName }: MobileNavProps) => {
     <div className='xl:hidden'>
       <Sheet>
         <SheetTrigger asChild>
-          <Menu className='cursor-pointer' />
+          <Menu data-testid='nav-button' className='cursor-pointer' />
         </SheetTrigger>
         <SheetContent side='top'>
           <CardSection noSpacing>
-            <nav className='flex flex-col space-y-4'>
+            <nav data-testid='nav' className='flex flex-col space-y-4'>
               {menuItems.map((item) => {
                 const isActive = item.path === pathname;
                 return (

@@ -17,7 +17,7 @@ export const Nav = ({ userFirstName, userLastName }: NavProps) => {
   const pathname = usePathname();
   return (
     <CardSection noSpacing>
-      <nav className='flex flex-col space-y-4'>
+      <nav data-testid='nav' className='flex flex-col space-y-4'>
         {menuItems.map((item) => {
           const isActive = item.path === pathname;
           return (
