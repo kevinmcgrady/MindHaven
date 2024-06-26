@@ -1,7 +1,7 @@
 import '@testing-library/jest-dom/vitest';
 
 import { render, screen } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import PricingSection from '@/components/site/PricingSection';
 import { urls } from '@/constants/urls';
